@@ -1,0 +1,16 @@
+{% extends "LanGuardianApp/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="formContacto">
+    {% if "valido" in request.GET %}
+        <p style="color:white;">Información correcta</p>
+    {% endif %}
+    <form action="" method="POST" style="text-align:center;">
+        {% csrf_token %}
+        <table style="color:white; margin: 20px auto;">{{miform.as_table}}</table>
+        <input type="submit" value="Examinar">
+    </form>
+</div>
+
+{% endblock %}
