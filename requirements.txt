@@ -1,5 +1,8 @@
 #requirements.txt
 
+pyyaml
 django
 gunicorn
 Pillow
+fabric
+ciscoconfparse
