@@ -1,511 +1,268 @@
-Command exited with status 0.
-=== stdout ===
-Current configuration : 12400 bytes
-!
-! Last configuration change at 17:24:13 ARG Wed Apr 21 2021 by admin
-! NVRAM config last updated at 17:24:13 ARG Wed Apr 21 2021 by admin
-!
-version 17.3
-service timestamps debug datetime msec
-service timestamps log datetime localtime
+version 15.0
+!Disable PAD service:
+no service pad
+no service password-recovery
+!Configure Service Timestamps for Debug and Log Messages:
+service timestamps debug datetime msec show-timezone localtime
+service timestamps log datetime msec show-timezone localtime
+! Set and secure passwords:
 service password-encryption
-platform punt-keepalive disable-kernel-core
+service sequence-numbers
+service nagle
+service tcp-keepalives-in
+service tcp-keepalives-out
+
+!Disable DHCP server:
+no service dhcp
+ip dhcp bootp ignore
+
 !
-hostname borde-ringo-01
+hostname SW-HW-DC-1
 !
+boot-start-marker
+boot-end-marker
 !
-vrf definition Mgmt-vrf
- !
- address-family ipv4
- exit-address-family
- !
- address-family ipv6
- exit-address-family
+logging console critical
+logging monitor informational
+!Set Enable and User Password with Secret:
+
+enable secret 0 1qaz2wsx!.
+username swadmin1 secret 0 1q2w3e4r!
+! localit user only can show running configuration
+username localit secret Cisco1234
+username localit privilege 15 autocommand show running
+! localadmin user can do more troubleshooting and run ‘show config’
+username localadmin privilege 7 secret Cisco1234
 !
-logging discriminator BORRA msg-body drops %SMART
-logging userinfo
-logging buffered 256000
-logging console notifications
+privilege exec level 7 show config
 !
+!Configure AAA service:
+aaa new-model
 !
+!Configure AAA Authentication for Login
+aaa authentication login default local group radius group tacacs+
+aaa authentication login CONAUTH local group tacacs+
+aaa authentication login VTYAUTH local group tacacs+
+!Configure AAA Authentication for Enable Mode:
+aaa authentication enable default enable group radius group tacacs+
+aaa authorization console
+aaa authorization exec default local group radius group tacacs+ 
+aaa accounting exec default start-stop group tacacs+
+aaa accounting commands 1 default stop-only group tacacs+
+aaa accounting commands 5 default stop-only group tacacs+
+aaa accounting commands 15 default stop-only group tacacs+
+aaa accounting system default start-stop group tacacs+
 !
+aaa session-id common
+clock timezone EST -5 0
+clock summer-time EDT recurring
+system mtu routing 1500
+!Disable IP source-route:
+no ip source-route
+no ip gratuitous-arps
 !
-no aaa new-model
-clock timezone ARG -3 0
-switch 1 provision c9200l-24p-4x
-!
-!
-!
-!
-vtp mode off
-!
-!
-!
-!
-!
-!
-no ip domain lookup
-ip domain name primary.com
-!
-!
-!
+!Disable Router Name and DNS Name Resolution:
+no ip domain-lookup
+ip domain-name sw.hw
+login block-for 120 attempts 5 within 60
+login quiet-mode access-class 101
 login on-failure log
 login on-success log
-no device-tracking logging theft
+vtp domain sw.hw
+vtp mode transparent
+
 !
-crypto pki trustpoint SLA-TrustPoint
- enrollment terminal
- revocation-check crl
-!
-crypto pki trustpoint TP-self-signed-4218565003
- enrollment selfsigned
- subject-name cn=IOS-Self-Signed-Certificate-4218565003
- revocation-check none
- rsakeypair TP-self-signed-4218565003
-!
-crypto pki trustpoint TP-self-signed-2150618645
- enrollment selfsigned
- subject-name cn=IOS-Self-Signed-Certificate-2150618645
- revocation-check none
- rsakeypair TP-self-signed-2150618645
-!
-!
-crypto pki certificate chain SLA-TrustPoint
- certificate ca 01
-  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
-  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
-  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
-  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
-  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
-  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
-  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
-  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
-  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
-  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
-  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
-  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
-  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
-  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
-  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
-  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
-  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
-  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
-  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
-  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
-  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
-  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
-  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
-  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
-  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
-  D697DF7F 28
-        quit
-crypto pki certificate chain TP-self-signed-4218565003
-crypto pki certificate chain TP-self-signed-2150618645
-!
-crypto pki certificate pool
- cabundle nvram:ios_core.p7b
-!
-license boot level network-essentials addon dna-essentials
-!
-!
-diagnostic bootup level minimal
+!Catch crash dumps; very important with a security switch.
+ip ftp username switchftp
+ip ftp password Cisco1234
+! Give our core dump files a unique name.
+exception core-file secure-switch01-core
+exception protocol ftp
+
+exception dump 10.10.2.13
+
+!Logging and archive the commands 
+archive
+  log config
+  logging enable
+  logging size 200
+  notify syslog
+  path flash:backup-
+  write-memory
+  maximum 8
+
 !
 spanning-tree mode pvst
+spanning-tree loopguard default
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+no spanning-tree optimize bpdu transmission
 spanning-tree extend system-id
-memory free low-watermark processor 10070
+spanning-tree uplinkfast
+spanning-tree backbonefast
+spanning-tree vlan 1,10,100,1000 priority 28672
 !
-username admin privilege 15 password 7 0034010F095A191F5E6A
-username confbackup privilege 15 secret 9 $9$6nuFCE/8Fm4CC.$d0vK7GSW1qvKoDy6tGh4e6DFHPCP0Llg29Wd7qisKmM
+errdisable recovery cause bpduguard
+errdisable recovery cause psecure-violation
 !
-redundancy
- mode sso
-!
-!
-vlan 8
- name Backbone-BsAs
+vlan internal allocation policy ascending
 !
 vlan 10
- name RED10-Maipu
 !
-vlan 20
- name Claro_BTG
-!
-vlan 21
- name Dev_ESCO
-!
-vlan 22
- name ESCO
-!
-vlan 30
- name IPC
-!
-vlan 40
- name Metrotel-Balanz
-!
-vlan 50 
-!
-vlan 666
- name Dummy
-!
-vlan 886
- name P2P-Ringo-Ros
-!
-vlan 887
- name P2P-PMY-J9
-!
-vlan 888
- name P2P-Ringo-VC
-!
-vlan 999
- name MANAGEMENT
+vlan 100
 !
 vlan 1000
- name Telecom_BTG
-!
-vlan 1181
- name DMZ
-!
-vlan 1350
- name Internet_BTG
-!
-vlan 2000 
-!
-vlan 2368
- name Iplan-Balanz
-!
-vlan 2370
- name Internet_J-9
-!
-vlan 2557
- name MAE_BTG
-!
-vlan 2572 
- name Internet_XOMS_PTP
-!
-vlan 2595
- name P2P-ByMA
-!
-vlan 2596
- name Iplan-2596
-!
-vlan 2680
- name vLAN_BTG
-!
-vlan 3250
- name Merval_BTG
-!
-vlan 3485
- name VC_para_BTG
-lldp run
-!
-!
-class-map match-any system-cpp-police-ewlc-control
-  description EWLC Control 
-class-map match-any system-cpp-police-topology-control
-  description Topology control
-class-map match-any system-cpp-police-sw-forward
-  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
-class-map match-any system-cpp-default
-  description EWLC data, Inter FED Traffic 
-class-map match-any system-cpp-police-sys-data
-  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
-class-map match-any system-cpp-police-punt-webauth
-  description Punt Webauth
-class-map match-any system-cpp-police-l2lvx-control
-  description L2 LVX control packets
-class-map match-any system-cpp-police-forus
-  description Forus Address resolution and Forus traffic
-class-map match-any system-cpp-police-multicast-end-station
-  description MCAST END STATION
-class-map match-any system-cpp-police-high-rate-app
-  description High Rate Applications 
-class-map match-any system-cpp-police-multicast
-  description MCAST Data
-class-map match-any system-cpp-police-l2-control
-  description L2 control
-class-map match-any system-cpp-police-dot1x-auth
-  description DOT1X Auth
-class-map match-any system-cpp-police-data
-  description ICMP redirect, ICMP_GEN and BROADCAST
-class-map match-any system-cpp-police-stackwise-virt-control
-  description Stackwise Virtual OOB
-class-map match-any non-client-nrt-class
-class-map match-any system-cpp-police-routing-control
-  description Routing control and Low Latency
-class-map match-any system-cpp-police-protocol-snooping
-  description Protocol snooping
-class-map match-any system-cpp-police-dhcp-snooping
-  description DHCP snooping
-class-map match-any system-cpp-police-ios-routing
-  description L2 control, Topology control, Routing control, Low Latency
-class-map match-any system-cpp-police-system-critical
-  description System Critical and Gold Pkt
-class-map match-any system-cpp-police-ios-feature
-  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
-!
-policy-map system-cpp-policy
-!
-! 
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-interface GigabitEthernet0/0
- vrf forwarding Mgmt-vrf
- no ip address
- shutdown
- negotiation auto
-!
-interface GigabitEthernet1/0/1
- description Enlace a ByMA
- switchport trunk native vlan 2596
- switchport trunk allowed vlan 2596
- switchport mode trunk
- logging event spanning-tree
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/2
- description TLS Telecom BTG
- switchport access vlan 1000
- switchport mode access
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/3
- description TLS Claro BTG
- switchport access vlan 2000
- switchport mode access
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/4
- description VLANs Iplan para BTG
- switchport trunk native vlan 666
- switchport trunk allowed vlan 1350,2368,2557,2680,3250,3485
- switchport mode trunk
- no cdp enable
- storm-control broadcast level 1.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/5
- description Enlace a IPC
- switchport access vlan 30
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/6
- description Internet XOMS-PTP
- switchport access vlan 2572
- storm-control broadcast level 20.00
- storm-control action trap
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/7
- description Trunk Metrotel
- switchport trunk native vlan 40
- switchport trunk allowed vlan 40
- switchport mode trunk
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/8
-!
-interface GigabitEthernet1/0/9
-!
-interface GigabitEthernet1/0/10
-!
-interface GigabitEthernet1/0/11
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/12
- no cdp enable
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/13
-!
-interface GigabitEthernet1/0/14
-!
-interface GigabitEthernet1/0/15
-!
-interface GigabitEthernet1/0/16
-!
-interface GigabitEthernet1/0/17
-!
-interface GigabitEthernet1/0/18
- description Inter rack J-9
- switchport trunk native vlan 999
- switchport trunk allowed vlan 8,10,21,22,886-888,999,2370
- switchport mode trunk
-!
-interface GigabitEthernet1/0/19
- description Trunk a borde-ringo-02
- switchport trunk native vlan 999
- switchport trunk allowed vlan 999
- switchport mode trunk
-!
-interface GigabitEthernet1/0/20
- description DMZ-ESXI01-VLAN1181
- switchport access vlan 1181
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/21
- description DMZ-ESXI02-VLAN1181
- switchport access vlan 1181
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/22
- switchport mode access
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/23
- description TRUNK-PALOALTO-FW2
- switchport trunk allowed vlan 8,10,20-22,30,40,886-888,999,1000,1181,1350,2000
- switchport trunk allowed vlan add 2368,2370,2557,2572,2596,2680,3250,3485
- switchport mode trunk
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface GigabitEthernet1/0/24
- description TRUNK-PALOALTO-FW1
- switchport trunk allowed vlan 8,10,20-22,30,40,886-888,999,1000,1181,1350,2000
- switchport trunk allowed vlan add 2368,2370,2557,2572,2596,2680,3250,3485
- switchport mode trunk
- no cdp enable
- storm-control broadcast level 20.00
- storm-control action trap
- no lldp transmit
- no lldp receive
- spanning-tree portfast
- spanning-tree bpdufilter enable
-!
-interface TenGigabitEthernet1/1/1
-!
-interface TenGigabitEthernet1/1/2
-!
-interface TenGigabitEthernet1/1/3
-!
-interface TenGigabitEthernet1/1/4
-!
-interface Vlan1
- no ip address
- shutdown
-!
-interface Vlan999
- ip address 192.168.143.242 255.255.255.248
-!
-interface Vlan1181
- no ip address
-!
-interface Vlan1999
- no ip address
-!
-ip forward-protocol nd
-no ip http server
-ip http authentication local
-ip http secure-server
-ip http client source-interface Vlan999
+ name NATIVE
+
+!Configure SSH for Remote Access:
+Crypto Key Generate RSA General-keys modulus 2048
+ip ssh time-out 10
+ip ssh authentication-retries 5
+ip ssh logging events
 ip ssh version 2
 !
+interface Port-channel1
+ switchport trunk allowed vlan 1,10,100-1000
+ switchport trunk native vlan 1000
+ switchport mode trunk
+ spanning-tree bpduguard disable
 !
-kron occurrence Backup at 18:00 recurring
- policy-list BackupSyslog
+interface GigabitEthernet0/1
+ switchport mode access
+ spanning-tree portfast
+!Configure switch port-security:
+ switchport port-security
+ switchport port-security violation shutdown
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ no cdp enable
 !
-kron policy-list BackupSyslog
- cli copy flash:/syslog usbflash0:/syslog
+interface GigabitEthernet0/2
+ shutdown
+ no cdp enable
+
 !
-logging host 192.168.143.241
+interface GigabitEthernet0/3
+ description Connecting SW Core Layer
+ switchport trunk allowed vlan 1,10,100-1000
+ switchport trunk native vlan 1000
+
+ switchport mode trunk
+ channel-group 1 mode desirable
+ spanning-tree bpduguard disable
+ no cdp enable
 !
-snmp-server group infra v3 priv 
-snmp-server group SnmpAuthPrivGroup v3 priv read ViewDefault 
-snmp-server group SnmpAuthNoPrivGroup v3 auth 
-snmp-server group SnmpNoAuthNoPrivGroup v3 noauth 
-snmp-server view ViewDefault iso included
-snmp-server community PMYSNMP RO
-snmp-server community infra RO
+……
 !
-control-plane
- service-policy input system-cpp-policy
+interface Vlan1
+ description DefaultVLAN-Do not use it.
+ no ip route-cache
 !
+interface Vlan10
+ description Management
+ ip address 10.10.10.1
+ no ip route-cache
+!
+interface Vlan100
+ ip address 10.100.10.1 255.255.255.0
+ standby 100 ip 10.100.10.3
+ standby 100 priority 200
+!
+ip default-gateway 10.10.10.254
+no ip http server
+no ip http secure-server
+!
+!ip access-list standard remark SNMP ACL
+
+ip access-list standard snmp-Allow
+ permit 10.0.0.0 0.255.255.255
+ deny any log
+!
+logging esm config
+logging trap debugging
+logging 10.10.10.15
+access-list 101 remark VTY Access ACL
+access-list 101 permit ip 10.10.0.0 0.0.255.255 any log-input
+access-list 101 deny ip any any log-input
+!You also could use ip access-list command to edit 101 access-list
+!
+snmp-server group SNMPv3-RO v3 priv read ReadView-All access snmp-Allow
+!Write SNMPv3 permission is not necessary. This is just for configuration example
+
+!snmp-server group SNMPv3-RW v3 priv read ReadView-All write WriteView-All access snmp-Allow
+snmp-server group NetService-RO v3 priv notify *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF0F 
+snmp-server view ReadView-All iso included
+snmp-server view ReadView-All internet included
+snmp-server view ReadView-All system included
+snmp-server view ReadView-All interfaces included
+snmp-server view ReadView-All snmpUsmMIB excluded
+snmp-server view ReadView-All snmpVacmMIB excluded
+snmp-server view ReadView-All snmpCommunityMIB excluded
+snmp-server view ReadView-All ip.21 excluded
+snmp-server view ReadView-All ip.22 excluded
+snmp-server view ReadView-All chassis included
+snmp-server view WriteView-ALL iso included
+snmp-server view WriteView-All iso included
+snmp-server view WriteView-All internet included
+snmp-server view WriteView-All system included
+snmp-server view WriteView-All interfaces included
+snmp-server view WriteView-All snmpUsmMIB excluded
+snmp-server view WriteView-All snmpVacmMIB excluded
+snmp-server view WriteView-All snmpCommunityMIB excluded
+snmp-server view WriteView-All ip.21 excluded
+snmp-server view WriteView-All ip.22 excluded
+snmp-server view WriteView-All chassis included
+!
+!
+snmp-server community SNMPCO RO
+snmp-server location US-HW
+snmp-server contact IT-HP
+!
+!It is best to define trap details here to reduce resource usage
+
+snmp-server enable traps 
+snmp-server host 10.10.10.25 version 3 priv NetService-RO 
+!
+radius-server host 10.10.10.35 auth-port 1812 key q1w2e3!
+!
+!tacacs server 10.10.1.8
+
+! key 7 01300F175804575D7218
+
+!If you do not have Tacacs server, please donot implement those above two commands since it will cause slow CLI responding issue.
+!
+banner motd #
+****************************************************************
+* This is a private computing facility.                        *
+* Unauthorized use of this device is strictly prohibited.      *
+* Violators will be prosecuted to the maximum extent possible. *
+*                                                              *
+* TACACS+ Authentication and Accounting are in place.          *
+* All actions/commands are monitored and recorded.             *
+* By using the network you expressly consent to such           *
+* monitoring and recording.                                    *
+****************************************************************
+#
 !
 line con 0
- login local
- stopbits 1
-line aux 0
- stopbits 1
+!Configure AAA Authentication for Local Console Line:
+ login authentication CONAUTH
+ exec-timeout 5 0
+ logging synchronous
 line vty 0 4
- login local
- length 0
- transport input all
-line vty 5 15
- login local
+ access-class 101 in
+!Configure Timeout for Login Sessions:
+ exec-timeout 5 0
+ logging synchronous
+!Configure SSH Access:
  transport input ssh
+ login authentication VTYAUTH
+!
+!
+monitor session 1 source vlan 100 – 1000
+monitor session 1 destination interface Gi1/0/13
 !
 ntp logging
-ntp source Vlan999
-ntp server 192.168.143.241 prefer
-!
-!
-!
-!
-!
-!
+ntp master 3
+ntp server 10.10.10.5
 end
-
-(no stderr)

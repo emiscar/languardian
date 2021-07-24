@@ -38,10 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'LanGuardianApp',
-    'LanGuardianSrv',
-    'LanGuardianBlog',
     'LanGuardianCont',
-    'LanGuardianTienda',
 ]
 
 MIDDLEWARE = [
