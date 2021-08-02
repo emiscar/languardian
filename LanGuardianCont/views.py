@@ -33,25 +33,27 @@ def contacto(request):
 def configuracion(request):
     f = open("config.txt", "r",encoding='utf-8')
     contenido = f.read()
-    f.close()
-    #print(contenido)
-    #parse = CiscoConfParse("config.txt")
-    #aaauth = parse.find_objects(r"^aaa")
-    #if (len(aaauth) == 0):
-    #    print("No esta configurado")
-    #    print("Se recomienda configurar el servicio AAA porque XXXXXXXXXX")
-    #    print("Para realizarlo debe ejecutar la sentencia: XXXXXXXXXXX")
-    #else:
-    #    #print(aaauth)
-    #    for obj in aaauth:
-    #        if "authentication" in obj.text:
-    #            print("Tiene configurada authentication")
-    #        if "authorization" in obj.text:
-    #            print("Tiene configurada authorization")
-    #        if "accounting" in obj.text:
-    #            print("Tiene configurada accounting")
-    #        if "session-id" in obj.text:
-    #            print("Tiene configurada session-id")
-    #        if "new-model" in obj.text:
-    #            print("Tiene configurada new-model")
+    f.close()    
+    parse = CiscoConfParse("config.txt")
+    lista_reco=[]
+    aaauth = parse.find_objects(r"^aaa")
+    
+    if (len(aaauth) == 0):
+        
+        print("No esta configurado")
+        print("Se recomienda configurar el servicio AAA porque XXXXXXXXXX")
+        print("Para realizarlo debe ejecutar la sentencia: XXXXXXXXXXX")
+    else:
+        #print(aaauth)
+        for obj in aaauth:
+            if "authentication" in obj.text:
+                print("Tiene configurada authentication")
+            if "authorization" in obj.text:
+                print("Tiene configurada authorization")
+            if "accounting" in obj.text:
+                print("Tiene configurada accounting")
+            if "session-id" in obj.text:
+                print("Tiene configurada session-id")
+            if "new-model" in obj.text:
+                print("Tiene configurada new-model")
     return render(request,"LanGuardianCont/configuracion.html", {'cont':contenido})

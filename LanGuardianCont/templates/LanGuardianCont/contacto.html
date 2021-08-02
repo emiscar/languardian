@@ -2,16 +2,85 @@
 {% load static %}
 {% block content %}
 
-<div class="formContacto">
+<!--<div class="formContacto">
     {% if "valido" in request.GET %}
         <p style="color:white;">Información correcta</p>
     {% endif %}
     <form action="/contacto/configuracion/" method="POST" style="text-align:center;">
         {% csrf_token %}
         <table style="color:white; margin: 20px auto;">{{miform.as_table}}</table>
-        <!--<input type="submit" value="Examinar">-->
+        <!-<input type="submit" value="Examinar">->
         <button type="submit" class="btn btn-primary">Examinar</button>
-    </form>
+    </form>-->
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Escanear dispositivos</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Dispostivos</h5>
+                                    <hr>
+                                    <div class="row">
+                                        <!--div class="col-md-6"-->
+                                            <form class="row gy-2 gx-3 align-items-center" action="/contacto/configuracion/" method="POST">
+                                                {% csrf_token %}
+                                                <!--div class="form-group"-->
+                                                <div class="col-auto">
+                                                    <label for="inputIP">Dirección IP</label>
+                                                    {{miform.ip}}
+                                                    <!--input type="text" class="form-control" id="inputIP" aria-describedby="emailHelp" placeholder="Ingrese IP del dispositivo" style="width: 200px; font-size: smaller;"-->
+                                                    <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
+                                                </div>
+                                                <div class="col-auto">
+                                                    <label for="inputPuerto">Puerto</label>
+                                                    {{miform.puerto}}
+                                                    <!--input type="number" class="form-control" id="inputPuerto" placeholder="Ingrese puerto SSH/Telnet" style="width: 200px; font-size: smaller;"-->
+                                                </div>
+                                                <!--div class="form-group form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                                </div-->
+                                                <div class="col-auto">
+                                                    <label for="inputUsuario">Usuario</label>
+                                                    {{miform.usuario}}
+                                                    <!--input type="text" class="form-control" id="inputUsuario" placeholder="Ingrese usuario" style="width: 200px; font-size: smaller;"-->
+                                                </div>
+                                                <div class="col-auto">
+                                                    <label for="inputClave">Contraseña</label>
+                                                    {{miform.clave}}
+                                                    <!--input type="password" class="form-control" id="inputClave" placeholder="Ingrese contraseña" style="width: 200px; font-size: smaller;"-->
+                                                </div> 
+                                                <div class="col-auto">
+                                                    <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Submit</button>
+                                                </div>                                               
+                                            </form>
+                                            
+                                        <!--/div-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
