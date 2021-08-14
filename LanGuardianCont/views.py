@@ -31,21 +31,21 @@ def analisis(request):
             usuario=request.POST.get("usuario")
             clave=request.POST.get("clave")
             res = ssh(ip,puerto,usuario,clave)
-            error = "pepe"
+            #error = "pepe"
             if res == True:
                 return redirect("/analisis/configuracion")
             else:
                 if "Authentication" in res:
                     print("Autenticación fallida. Verifique usuario y contraseña")
-                    error = 1
+                    #error = 1
                 else:
                     if "10060" in res:
                         print("Timeout. Dispositivo/puerto sin respuesta")
-                        error = 2
+                        #error = 2
                     else:
                         if "11001" in res:
                             print("Ingrese una IP válida")
-                            error = 3
+                            #error = 3
             #f = open("config2.txt", "w")
             #c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
             #f.write(str(c.run('cat pepe.txt')))
@@ -57,7 +57,7 @@ def analisis(request):
             #except:
             #    return redirect("/analisis/?invalido")
 
-    return render(request,"LanGuardianCont/analisis.html", {'miform':formu_cont, 'err':error})
+    return render(request,"LanGuardianCont/analisis.html", {'miform':formu_cont})#, 'err':error})
 
 def configuracion(request):
     f = open("config2.txt", "r",encoding='utf-8')
