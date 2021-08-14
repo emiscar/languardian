@@ -34,13 +34,19 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5>Dispostivos</h5>
+                                    <h5>Dispositivos</h5>
                                     <hr>
                                     <div class="row">
                                         <!--div class="col-md-6"-->
-                                            <form class="row gy-2 gx-3 align-items-center" action="/contacto/configuracion/" method="POST">
+                                            {% if "pepe" in err %}
+                                                <div>
+                                                    Error 0
+                                                </div>
+                                            {% endif %}
+                                            <form class="row gy-2 gx-3 align-items-center" action="" method="POST">
                                                 {% csrf_token %}
                                                 <!--div class="form-group"-->
+                                                
                                                 <div class="col-auto">
                                                     <label for="inputIP">Dirección IP</label>
                                                     {{miform.ip}}
@@ -66,11 +72,10 @@
                                                     {{miform.clave}}
                                                     <!--input type="password" class="form-control" id="inputClave" placeholder="Ingrese contraseña" style="width: 200px; font-size: smaller;"-->
                                                 </div> 
-                                                <div class="col-auto">
-                                                    <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Submit</button>
+                                                <div style="text-align: center;">
+                                                    <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button>
                                                 </div>                                               
                                             </form>
-                                            
                                         <!--/div-->
                                     </div>
                                 </div>

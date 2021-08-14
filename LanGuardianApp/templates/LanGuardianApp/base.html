@@ -43,8 +43,8 @@
           <li class="nav-item {% if request.path == '/tienda' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="">Tienda</a>
           </li>->
-          <li class="nav-item {% if request.path == '/contacto' %}active{% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Contacto' %}">Contacto</a>
+          <li class="nav-item {% if request.path == '/analisis' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Analisis' %}">Analisis</a>
           </li>
           <!-<li class="nav-item {% if request.path|slice:':5' == '/blog' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="">Blog</a>
@@ -73,7 +73,7 @@
                 </li>
                 <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" 
                     class="nav-item {% if 'index' in segment %} active {% endif %}">
-                    <a href="/contacto/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Escanear dispositivos</span></a>
+                    <a href="/analisis/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Escanear dispositivos</span></a>
                 </li>
                 <li class="nav-item pcoded-menu-caption">
                     <label>Seguridad</label>

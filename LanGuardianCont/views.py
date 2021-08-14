@@ -5,10 +5,23 @@ from .forms import formularioCont
 from fabric import Connection
 from ciscoconfparse import CiscoConfParse
 from io import open
+import logging
 
 # Create your views here.
+def ssh(ip, puerto, usuario, clave):
+    logging.info('connection attempt {}'.format(0))
+    c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
+    try:
+        c.run('cat pepe.txt')
+        f = open("config2.txt", "w")
+        f.write(str(c.run('cat pepe.txt')))
+        f.close()
+        return True
+    except Exception as ex:
+        return (str(ex))
+        
 
-def contacto(request):
+def analisis(request):
     formu_cont=formularioCont()
     if request.method=="POST":
         formu_cont=formularioCont(data=request.POST)
@@ -17,21 +30,37 @@ def contacto(request):
             puerto=request.POST.get("puerto")
             usuario=request.POST.get("usuario")
             clave=request.POST.get("clave")
-            #f = open("config.txt", "w")
+            res = ssh(ip,puerto,usuario,clave)
+            error = "pepe"
+            if res == True:
+                return redirect("/analisis/configuracion")
+            else:
+                if "Authentication" in res:
+                    print("Autenticación fallida. Verifique usuario y contraseña")
+                    error = 1
+                else:
+                    if "10060" in res:
+                        print("Timeout. Dispositivo/puerto sin respuesta")
+                        error = 2
+                    else:
+                        if "11001" in res:
+                            print("Ingrese una IP válida")
+                            error = 3
+            #f = open("config2.txt", "w")
             #c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
             #f.write(str(c.run('cat pepe.txt')))
             #f.close()
 
-            try: 
-                c.run()
-                return redirect("/contacto/?valido")
-            except:
-                return redirect("/contacto/?invalido")
+            #try: 
+            #    c.run('cat pepe.txt')
+            #    return redirect("/analisis/configuracion")
+            #except:
+            #    return redirect("/analisis/?invalido")
 
-    return render(request,"LanGuardianCont/contacto.html", {'miform':formu_cont})
+    return render(request,"LanGuardianCont/analisis.html", {'miform':formu_cont, 'err':error})
 
 def configuracion(request):
-    f = open("config.txt", "r",encoding='utf-8')
+    f = open("config2.txt", "r",encoding='utf-8')
     contenido = f.read()
     f.close()    
     parse = CiscoConfParse("config.txt")
