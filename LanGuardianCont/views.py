@@ -12,7 +12,7 @@ def ssh(ip, puerto, usuario, clave):
     logging.info('connection attempt {}'.format(0))
     c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
     try:
-        c.run('cat pepe.txt')
+        c.run('type pepe.txt')
         f = open("config2.txt", "w")
         f.write(str(c.run('cat pepe.txt')))
         f.close()
@@ -31,6 +31,7 @@ def analisis(request):
             usuario=request.POST.get("usuario")
             clave=request.POST.get("clave")
             res = ssh(ip,puerto,usuario,clave)
+            
             #error = "pepe"
             if res == True:
                 return redirect("/analisis/configuracion")
