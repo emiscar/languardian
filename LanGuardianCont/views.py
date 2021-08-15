@@ -14,7 +14,7 @@ def ssh(ip, puerto, usuario, clave):
     try:
         c.run('type pepe.txt')
         f = open("config2.txt", "w")
-        f.write(str(c.run('cat pepe.txt')))
+        f.write(str(c.run('type pepe.txt')))
         f.close()
         return True
     except Exception as ex:
@@ -31,7 +31,7 @@ def analisis(request):
             usuario=request.POST.get("usuario")
             clave=request.POST.get("clave")
             res = ssh(ip,puerto,usuario,clave)
-            
+            #res = True
             #error = "pepe"
             if res == True:
                 return redirect("/analisis/configuracion")
@@ -64,7 +64,7 @@ def configuracion(request):
     f = open("config2.txt", "r",encoding='utf-8')
     contenido = f.read()
     f.close()    
-    parse = CiscoConfParse("config.txt")
+    parse = CiscoConfParse("config2.txt")
     p1 = parse.find_objects(r"^aaa new-model")
 
     if (len(p1) == 0):
