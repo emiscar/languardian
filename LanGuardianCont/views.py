@@ -12,9 +12,9 @@ def ssh(ip, puerto, usuario, clave):
     logging.info('connection attempt {}'.format(0))
     c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
     try:
-        c.run('type pepe.txt')
+        c.run('type config.txt')
         f = open("config2.txt", "w")
-        f.write(str(c.run('type pepe.txt')))
+        f.write(str(c.run('type config.txt')))
         f.close()
         return True
     except Exception as ex:
