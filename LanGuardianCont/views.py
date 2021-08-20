@@ -74,7 +74,7 @@ def configuracion(request):
         impacto = "La implementación de Cisco AAA es significativamente disruptiva, ya que los métodos de acceso anteriores se desactivan de inmediato. Por lo tanto, antes de implementar Cisco AAA, la organización debe revisar y planificar cuidadosamente sus criterios de autenticación (inicios de sesión y contraseñas, desafíos y respuestas, y tecnologías de token), métodos de autorización y requisitos de contabilidad"
         remediacion = "Ejecute el comando 'aaa new-model'"
         lista_reco = {'descripcion':desc, 'razon':razon,'impacto':impacto,'remediacion':remediacion}        
-    print(lista_reco)
+    #print(lista_reco)
     
     #if (len(aaauth) == 0):
         
