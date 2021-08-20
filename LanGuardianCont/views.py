@@ -13,7 +13,7 @@ def ssh(ip, puerto, usuario, clave):
     c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
     try:
         c.run('type config.txt')
-        f = open("config2.txt", "w")
+        f = open("config.txt", "w")
         f.write(str(c.run('type config.txt')))
         f.close()
         return True
@@ -61,19 +61,19 @@ def analisis(request):
     return render(request,"LanGuardianCont/analisis.html", {'miform':formu_cont})#, 'err':error})
 
 def configuracion(request):
-    f = open("config2.txt", "r",encoding='utf-8')
+    f = open("config.txt", "r",encoding='utf-8')
     contenido = f.read()
     f.close()    
-    parse = CiscoConfParse("config2.txt")
-    p1 = parse.find_objects(r"^aaa new-model")
+    #parse = CiscoConfParse("config2.txt")
+    #p1 = parse.find_objects(r"^aaa new-model")
 
-    if (len(p1) == 0):
-        desc = "Habilite el sistema de control de acceso AAA"
-        #razon = "Los servicios de autenticación, autorización y contabilidad (AAA) proporcionan una fuente autorizada para administrar y monitorear el acceso de los dispositivos. La centralización del control mejora la coherencia del control de acceso, los servicios a los que se puede acceder una vez autenticados y la responsabilidad mediante el seguimiento de los servicios a los que se accede. Además, la centralización del control de acceso simplifica y reduce los costos administrativos de aprovisionamiento y desaprovisionamiento de cuentas, especialmente cuando se administra una gran cantidad de dispositivos"
-        razon = "Los servicios de autenticación, autorización y contabilidad (AAA) proporcionan una fuente autorizada para administrar y monitorear el acceso de los dispositivos."
-        impacto = "La implementación de Cisco AAA es significativamente disruptiva, ya que los métodos de acceso anteriores se desactivan de inmediato. Por lo tanto, antes de implementar Cisco AAA, la organización debe revisar y planificar cuidadosamente sus criterios de autenticación (inicios de sesión y contraseñas, desafíos y respuestas, y tecnologías de token), métodos de autorización y requisitos de contabilidad"
-        remediacion = "Ejecute el comando 'aaa new-model'"
-        lista_reco = {'descripcion':desc, 'razon':razon,'impacto':impacto,'remediacion':remediacion}        
+    #if (len(p1) == 0):
+    desc = "Habilite el sistema de control de acceso AAA"
+    #razon = "Los servicios de autenticación, autorización y contabilidad (AAA) proporcionan una fuente autorizada para administrar y monitorear el acceso de los dispositivos. La centralización del control mejora la coherencia del control de acceso, los servicios a los que se puede acceder una vez autenticados y la responsabilidad mediante el seguimiento de los servicios a los que se accede. Además, la centralización del control de acceso simplifica y reduce los costos administrativos de aprovisionamiento y desaprovisionamiento de cuentas, especialmente cuando se administra una gran cantidad de dispositivos"
+    razon = "Los servicios de autenticación, autorización y contabilidad (AAA) proporcionan una fuente autorizada para administrar y monitorear el acceso de los dispositivos."
+    impacto = "La implementación de Cisco AAA es significativamente disruptiva, ya que los métodos de acceso anteriores se desactivan de inmediato. Por lo tanto, antes de implementar Cisco AAA, la organización debe revisar y planificar cuidadosamente sus criterios de autenticación (inicios de sesión y contraseñas, desafíos y respuestas, y tecnologías de token), métodos de autorización y requisitos de contabilidad"
+    remediacion = "Ejecute el comando 'aaa new-model'"
+    lista_reco = {'descripcion':desc, 'razon':razon,'impacto':impacto,'remediacion':remediacion}        
     #print(lista_reco)
     
     #if (len(aaauth) == 0):
