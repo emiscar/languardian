@@ -69,7 +69,7 @@
                                     <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
                                         Recomendaciones
                                         <span class="badge bg-primary">
-                                            4
+                                            {{lis2|length}}
                                         </span>
                                     </button>
                                 </li>
@@ -90,15 +90,17 @@
                                     </button>
                                 </li>
                             </ul>
+                            
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    {% for lista in lis2 %}
                                     <div class="card">
                                         <div style="margin:10px">
                                             <div style="width: 15%; float: left; font-size: smaller;">
                                                 Descripción:
                                             </div>
                                             <div style="width: 85%; float: right;">
-                                                <p class="mb-3" style="font-size: smaller;">{{lis.descripcion}}</p>
+                                                <p class="mb-3" style="font-size: smaller;">{{lista.DESCRIPCION}}</p>
                                             </div>
                                         </div>
                                         <div style="margin:10px">
@@ -106,7 +108,7 @@
                                                 Razón:
                                             </div>
                                             <div style="width: 85%; float: right;">
-                                                <p class="mb-3" style="font-size: smaller;">{{lis.razon}}</p>
+                                                <p class="mb-3" style="font-size: smaller;">{{lista.RECOMENDACIÓN}}</p>
                                             </div>
                                         </div>
                                         <div style="margin:10px">
@@ -114,7 +116,7 @@
                                                 Impacto:
                                             </div>
                                             <div style="width: 85%; float: right;">
-                                                <p class="mb-3" style="font-size: smaller;">{{lis.impacto}}</p>
+                                                <p class="mb-3" style="font-size: smaller;">{{lista.IMPACTO}}</p>
                                             </div>
                                         </div>
                                         <div style="margin:10px">
@@ -122,11 +124,28 @@
                                                 Remediación:
                                             </div>
                                             <div style="width: 85%; float: right;">
-                                                <p class="mb-3" style="font-size: smaller;">{{lis.remediacion}}</p>
+                                                <p class="mb-3" style="font-size: smaller;">{{lista.REMEDIACION}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Comando:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{lista.COM_REM}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                NIST:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{lista.NIST}}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card" >
+                                    {% endfor %}
+                                    <!--div class="card" >
                                         <div style="margin:10px">
                                             <div style="width: 15%; float: left; font-size: smaller;">
                                                 Descripción:
@@ -165,7 +184,7 @@
                                     </div>
                                     <div class="card" >
                                         <p class="mb-3">Recomendacion 4</p>
-                                    </div>
+                                    </div-->
                                 </div>
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                     Contenido 2

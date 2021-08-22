@@ -6,3 +6,5 @@ gunicorn
 Pillow
 fabric
 ciscoconfparse
+pandas
+openpyxl

@@ -6,6 +6,7 @@ from fabric import Connection
 from ciscoconfparse import CiscoConfParse
 from io import open
 import logging
+import pandas as pd
 
 # Create your views here.
 def ssh(ip, puerto, usuario, clave):
@@ -26,26 +27,29 @@ def analisis(request):
     if request.method=="POST":
         formu_cont=formularioCont(data=request.POST)
         if formu_cont.is_valid():
-            ip=request.POST.get("ip")
-            puerto=request.POST.get("puerto")
-            usuario=request.POST.get("usuario")
-            clave=request.POST.get("clave")
-            res = ssh(ip,puerto,usuario,clave)
-            #res = True
+            #ip=request.POST.get("ip")
+            #puerto=request.POST.get("puerto")
+            #usuario=request.POST.get("usuario")
+            #clave=request.POST.get("clave")
+            #res = ssh(ip,puerto,usuario,clave)
+            res = True
             #error = "pepe"
             if res == True:
                 return redirect("/analisis/configuracion")
             else:
                 if "Authentication" in res:
                     print("Autenticación fallida. Verifique usuario y contraseña")
+                    #ACA VA EL MODAL 1
                     #error = 1
                 else:
                     if "10060" in res:
                         print("Timeout. Dispositivo/puerto sin respuesta")
+                        #ACA VA EL MODAL 2
                         #error = 2
                     else:
                         if "11001" in res:
                             print("Ingrese una IP válida")
+                            #ACA VA EL MODAL 3
                             #error = 3
             #f = open("config2.txt", "w")
             #c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
@@ -61,10 +65,44 @@ def analisis(request):
     return render(request,"LanGuardianCont/analisis.html", {'miform':formu_cont})#, 'err':error})
 
 def configuracion(request):
+    #from ciscoconfparse import CiscoConfParse
+    ## GUARDO LA CONFIG PARA PASARLA A LA WEB ##
     f = open("config.txt", "r",encoding='utf-8')
     contenido = f.read()
-    f.close()    
-    #parse = CiscoConfParse("config2.txt")
+    f.close()
+    ## UTILIZO CONFPARSE ##
+    parse = CiscoConfParse("config.txt")
+    ## LEO TEMPLATE NIST ##
+    df = pd.read_excel("NIST.xlsx", sheet_name="NIST", header=0, na_values="NaN")
+    #print(df["COMANDO"])
+    #i=0
+    ## MATCHEO CADA FILA DEL NIST CONTRA LA CONFIG ##
+    lista_reco2 = []
+    for index, row in df.iterrows():
+        comando = df.iloc[index, 0]
+        #i=i+1
+        #print(index)
+        #exec(print(dir()))
+        #print ("Comando leido: ",comando)
+        #print ("Resultado leido: ",parse.find_objects(r"^aaa new-model"))
+        #print ("Real: ",eval('''parse.find_objects(r"^aaa new-model")'''))
+        print(eval(comando))
+        if len(eval(comando)) == 0:
+            #print("RECOMIENDO")
+            #descr=row[1]
+            #print(descr)
+            #raz=row[2]
+            #print(raz)
+            #imp=row[3]
+            #print(imp)
+            #reme=row[4]
+            #print(reme)
+            #com_rem=row[5]
+            #print(com_rem)
+            #nist=row[6]
+            #print(nist)
+            lista_reco2.append(row[1:7])
+    #print(lista_reco2)
     #p1 = parse.find_objects(r"^aaa new-model")
 
     #if (len(p1) == 0):
@@ -94,4 +132,9 @@ def configuracion(request):
     #            print("Tiene configurada session-id")
     #        if "new-model" in obj.text:
     #            print("Tiene configurada new-model")
-    return render(request,"LanGuardianCont/configuracion.html", {'cont':contenido, 'lis':lista_reco})
+    return render(request,"LanGuardianCont/configuracion.html", {'cont':contenido, 'lis':lista_reco, 'lis2':lista_reco2})
+
+def valtemplate (nist):
+
+
+    return True
