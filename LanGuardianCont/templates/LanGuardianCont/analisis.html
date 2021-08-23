@@ -43,41 +43,54 @@
                                                     Error 0
                                                 </div>
                                             {% endif %}-->
-                                            <form class="row gy-2 gx-3 align-items-center" action="" method="POST">
-                                                {% csrf_token %}
-                                                <!--div class="form-group"-->
+                                            
+                                            <!--form method="POST">{% csrf_token %}
+                                                <div id="formDisp">
+                                                    {{ form.management_form }}
+                                                    {% for f in form %}
+                                                        {{ f }}
+                                                        <p></p>
+                                                    {% endfor %}
+                                                </div>
+                                                <button type="submit">Analizar</button>
                                                 
-                                                <div class="col-auto">
-                                                    <label for="inputIP">Dirección IP</label>
-                                                    {{miform.ip}}
-                                                    <!--input type="text" class="form-control" id="inputIP" aria-describedby="emailHelp" placeholder="Ingrese IP del dispositivo" style="width: 200px; font-size: smaller;"-->
-                                                    <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
-                                                </div>
-                                                <div class="col-auto">
-                                                    <label for="inputPuerto">Puerto</label>
-                                                    {{miform.puerto}}
-                                                    <!--input type="number" class="form-control" id="inputPuerto" placeholder="Ingrese puerto SSH/Telnet" style="width: 200px; font-size: smaller;"-->
-                                                </div>
-                                                <!--div class="form-group form-check">
-                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                                </div-->
-                                                <div class="col-auto">
-                                                    <label for="inputUsuario">Usuario</label>
-                                                    {{miform.usuario}}
-                                                    <!--input type="text" class="form-control" id="inputUsuario" placeholder="Ingrese usuario" style="width: 200px; font-size: smaller;"-->
-                                                </div>
-                                                <div class="col-auto">
-                                                    <label for="inputClave">Contraseña</label>
-                                                    {{miform.clave}}
-                                                    <!--input type="password" class="form-control" id="inputClave" placeholder="Ingrese contraseña" style="width: 200px; font-size: smaller;"-->
-                                                </div> 
-                                                <div style="text-align: center;">
-                                                    <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button>
-                                                </div>                                               
-                                            </form>
+                                            </form-->
+                                            <!--button onclick="addDisp">Agregar dispositivo</button-->
                                         <!--/div-->
                                     </div>
+                                    <form class="row gy-2 gx-3 align-items-center" action="" method="POST">
+                                        {% csrf_token %}
+                                        <!--div class="form-group"-->
+                                        
+                                        <div class="col-auto">
+                                            <label for="inputIP">Dirección IP</label>
+                                            {{miform.ip}}
+                                            <!--input type="text" class="form-control" id="inputIP" aria-describedby="emailHelp" placeholder="Ingrese IP del dispositivo" style="width: 200px; font-size: smaller;"-->
+                                            <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
+                                        </div>
+                                        <div class="col-auto">
+                                            <label for="inputPuerto">Puerto</label>
+                                            {{miform.puerto}}
+                                            <!--input type="number" class="form-control" id="inputPuerto" placeholder="Ingrese puerto SSH/Telnet" style="width: 200px; font-size: smaller;"-->
+                                        </div>
+                                        <!--div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                        </div-->
+                                        <div class="col-auto">
+                                            <label for="inputUsuario">Usuario</label>
+                                            {{miform.usuario}}
+                                            <!--input type="text" class="form-control" id="inputUsuario" placeholder="Ingrese usuario" style="width: 200px; font-size: smaller;"-->
+                                        </div>
+                                        <div class="col-auto">
+                                            <label for="inputClave">Contraseña</label>
+                                            {{miform.clave}}
+                                            <!--input type="password" class="form-control" id="inputClave" placeholder="Ingrese contraseña" style="width: 200px; font-size: smaller;"-->
+                                        </div> 
+                                        <div style="text-align: center;">
+                                            <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button>
+                                        </div>                                               
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -87,5 +100,23 @@
         </div>
     </div>
 </div>
-
+<!--script>
+    function addDisp(){
+        var forms = document.querySelector('#id_form-TOTAL_FORMS');
+        var nuevo1 = document.querySelector('#id_form-0-ip').cloneNode( true );
+        nuevo1.name = 'form-'+forms.value+'-ip';
+        nuevo1.name = 'id_form-'+forms.value+'-ip';
+        var nuevo2 = document.querySelector('#id_form-0-puerto').cloneNode( true );
+        nuevo2.name = 'form-'+forms.value+'-puerto';
+        nuevo2.name = 'id_form-'+forms.value+'-puerto';
+        var nuevo3 = document.querySelector('#id_form-0-usuario').cloneNode( true );
+        nuevo3.name = 'form-'+forms.value+'-usuario';
+        nuevo3.name = 'id_form-'+forms.value+'-usuario';
+        var nuevo4 = document.querySelector('#id_form-0-clave').cloneNode( true );
+        nuevo4.name = 'form-'+forms.value+'-clave';
+        nuevo4.name = 'id_form-'+forms.value+'-clave';
+        console.log(forms.value);
+        document.querySelector('#formDisp').appendChild(nuevo1);
+    }
+</script-->
 {% endblock %}

@@ -1,4 +1,6 @@
+#from LanGuardianCont.models import Dispositivo
 from django import forms
+#from django.forms import fields, models
 
 class formularioCont(forms.Form):
     ip=forms.CharField(label="Dirección IP", required=True, widget=forms.TextInput(
@@ -9,7 +11,7 @@ class formularioCont(forms.Form):
             'style':'width: 200px; font-size: smaller;',
         }
     ))
-    puerto=forms.CharField(label="Puerto", required=True, widget=forms.TextInput(
+    puerto=forms.CharField(label="Puerto", required=True, widget=forms.NumberInput(
         attrs={
             'class':'form-control',
             'id':'inputPuerto',
@@ -25,12 +27,22 @@ class formularioCont(forms.Form):
             'style':'width: 200px; font-size: smaller;',
         }
     ))
-    clave=forms.CharField(label="Clave", required=True, widget=forms.TextInput(
+    clave=forms.CharField(label="Clave", required=True, widget=forms.PasswordInput(
         attrs={
             'class':'form-control',
             'id':'inputClave',
             'placeholder':'Ingrese contraseña',
-            'style':'width: 200px; font-size: smaller;',
+            'style':'width: 200px; font-size: smaller;'            
         }
     ))
-    
+
+#class DispositivoForm(forms.ModelForm):
+
+#    class Meta:
+#        model = Dispositivo
+#        fields = (
+#            'ip',
+#            'puerto',
+#            'usuario',
+#            'clave',
+#        )
