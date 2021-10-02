@@ -5,7 +5,7 @@
   {% load static %}
 
   <!-- Bootstrap -->
-  <link href="{% static 'LanGuardianApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'LanGuardianApp/vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
   <!-- Fonts -->
 
@@ -18,8 +18,43 @@
 </head>
 
 <body>
+  <section class="page-section clearfix" style="text-align: center; ">
+    <div class="container">
+      <div class="intro">
+        <p><img class="" src="{% static 'LanGuardianApp/img/L13.png' %}" alt="" style="width: 40%;"></p>
+      </div>
+    </div>
+  </section>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarCenteredExample"
+        aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
 
-  <nav class="pcoded-navbar">
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+        <!-- Left links -->
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/analisis/">Analizar dispositivos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Categorías NIST</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!--nav class="pcoded-navbar">
     <div class="navbar-wrapper">
       <div class="navbar-brand header-logo">
         <a href="/" class="b-brand">
@@ -40,9 +75,10 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav-->
   <!-- Contenido -->
-  <div class="pcoded-main-container">
+  <!--div class="pcoded-main-container"-->
+  <div>
     <div class="pcoded-wrapper">
       {% block content %}
 
