@@ -2,9 +2,13 @@
 
 pyyaml
 django
+django-extensions
 gunicorn
 Pillow
 fabric
 ciscoconfparse
+reportlab
+numpy
 pandas
-openpyxl
+paramiko
+Pillow

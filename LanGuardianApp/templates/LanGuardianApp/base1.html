@@ -18,29 +18,41 @@
 </head>
 
 <body>
-
-  <nav class="pcoded-navbar">
-    <div class="navbar-wrapper">
-      <div class="navbar-brand header-logo">
-        <a href="/" class="b-brand">
-          <span class="b-title"><b>LAN GUARDIAN</b></span>
-        </a>
-        <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-      </div>
-      <div class="navbar-content scroll-div">
-        <ul class="nav pcoded-inner-navbar">
-          <li class="nav-item pcoded-menu-caption">
-            <label>Análisis</label>
-          </li>
-          <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
-            class="nav-item {% if 'index' in segment %} active {% endif %}">
-            <a href="/analisis/" class="nav-link "><span class="pcoded-micon"><i
-                  class="feather icon-home"></i></span><span class="pcoded-mtext">Escanear dispositivos</span></a>
-          </li>
-        </ul>
-      </div>
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="https://placeholder.pics/svg/150x50/888888/EEE/Logo" alt="..." height="36">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
   <!-- Contenido -->
   <div class="pcoded-main-container">
     <div class="pcoded-wrapper">
@@ -86,6 +98,5 @@
   <script src="{% static 'LanGuardianApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
-
 
 </html>
