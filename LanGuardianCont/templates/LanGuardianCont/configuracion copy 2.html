@@ -1,0 +1,617 @@
+{% extends "LanGuardianApp/base.html" %}
+{% load static %}
+{% block content %}
+<link href="{% static 'LanGuardianApp/css/configuracion.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'LanGuardianApp/css/gestion.css' %}" rel="stylesheet">
+
+<section class="u-clearfix u-palette-1-base u-section-1" id="sec-2fbe">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h3 class="u-custom-font u-text u-text-font u-text-1">Resultados</h3>
+        <div class="u-expanded-width u-tabs u-tabs-1">            
+            <ul class="u-black u-tab-list u-unstyled u-tab-list-1" role="tablist">
+                <!-- ###### PRIMER SOLAPA ######-->
+                <li class="u-tab-item" role="presentation">
+                    <a class="active u-active-white u-button-style u-palette-2-base u-tab-link" id="link-tab-0534"
+                        href="#tab-0534" role="tab" aria-controls="tab-0534" aria-selected="true">Dispositivo 0</a>
+                </li>
+                <!-- ###### SIGUIENTES SOLAPAS ######-->
+                {% for lcont in cont_demas %}
+                <li class="u-tab-item" role="presentation">
+                    <a class="u-active-white u-button-style u-palette-2-base u-tab-link" id="link-tab-3b64"
+                        href="#tab-3b64" role="tab" aria-controls="tab-3b64" aria-selected="false">Dispositivo
+                        {{forloop.counter}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="u-tab-content">
+                <!-- ###### PRIMER DISPO CONTENEDOR ######-->
+                <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0534"
+                    role="tabpanel" aria-labelledby="link-tab-0534">
+                    <div class="u-container-layout u-container-layout-1">
+                        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+                            <div class="u-layout">
+                                <div class="u-layout-row">
+                                    <!-- ###### PRIMER CONFIG ######-->
+                                    <div class="u-container-style u-layout-cell u-size-29 u-white u-layout-cell-1">
+                                        <div class="u-container-layout u-container-layout-2">
+                                            <p class="u-text u-text-default u-text-2">{{cont_uno|linebreaks}}</p>
+                                        </div>
+                                    </div>                                    
+                                    <div class="u-container-style u-layout-cell u-size-31 u-layout-cell-2">
+                                        <div class="u-container-layout u-container-layout-3">
+                                            <div class="u-expanded-width u-tab-links-align-justify u-tabs u-tabs-2">
+                                                <!-- ###### PRIMER RECOMENDACIONES ######-->
+                                                <ul class="u-black u-tab-list u-unstyled u-tab-list-2" role="tablist">
+                                                    <!-- ###### PRIMER SOLAPA NIST ######-->
+                                                    <li class="u-tab-item" role="presentation">
+                                                        <a class="active u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-3"
+                                                            id="link-tab-9db2" href="#tab-9db2" role="tab"
+                                                            aria-controls="tab-9db2" aria-selected="true">NIST <span
+                                                                class="badge bg-primary">
+                                                                {{reco_uno|length}}
+                                                            </span></a>
+                                                    </li>
+                                                    <!-- ###### PRIMER SOLAPA RECOMENDACIONES ######-->
+                                                    <li class="u-tab-item" role="presentation">
+                                                        <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-4"
+                                                            id="link-tab-fbc2" href="#tab-fbc2" role="tab"
+                                                            aria-controls="tab-fbc2"
+                                                            aria-selected="false">Recomendaciones <span
+                                                                class="badge bg-primary">
+                                                                {{reco_uno|length}}</span></a>
+                                                    </li>
+                                                    <!-- ###### PRIMER SOLAPA BUENAS PRACTICAS ######-->
+                                                    <li class="u-tab-item" role="presentation">
+                                                        <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-5"
+                                                            id="link-tab-cce5" href="#tab-cce5" role="tab"
+                                                            aria-controls="tab-cce5" aria-selected="false">Buenas
+                                                            prácticas <span class="badge bg-primary">
+                                                                {{reco_uno|length}}</span></a>
+                                                    </li>
+                                                </ul>
+                                                <!-- ###### PRIMER RECO CONTENEDOR ######-->
+                                                <div class="u-tab-content">
+                                                    <!-- ###### PRIMER RECO CONTENEDOR NIST ######-->
+                                                    <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-2"
+                                                        id="tab-9db2" role="tabpanel" aria-labelledby="link-tab-9db2">
+                                                        <div class="u-container-layout u-container-layout-4">
+                                                            <p class="u-text u-text-default u-text-3">Texto de ejemplo.
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                                nullam nunc justo sagittis suscipit ultrices.1</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ###### PRIMER RECO CONTENEDOR RECOMENDACIONES ######-->
+                                                    <div class="u-container-style u-tab-pane u-white u-tab-pane-3"
+                                                        id="tab-fbc2" role="tabpanel" aria-labelledby="link-tab-fbc2">
+                                                        <div class="u-container-layout u-container-layout-5">
+                                                            <p class="u-text u-text-default u-text-4">Texto de ejemplo.
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                                nullam nunc justo sagittis suscipit ultrices.</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ###### PRIMER RECO CONTENEDOR BUENAS PRACTICAS ######-->
+                                                    <div class="u-container-style u-tab-pane u-white u-tab-pane-4"
+                                                        id="tab-cce5" role="tabpanel" aria-labelledby="link-tab-cce5">
+                                                        <div class="u-container-layout u-container-layout-6">
+                                                            <p class="u-text u-text-default u-text-5">Texto de ejemplo.
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                                nullam nunc justo sagittis suscipit ultrices.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ###### SIGUIENTES CONTENEDORES ######-->
+                {% for econt in cont_demas %}
+                <div class="u-container-style u-tab-pane u-white u-tab-pane-5" id="tab-3b64" role="tabpanel"
+                    aria-labelledby="link-tab-3b64">
+                    <div class="u-container-layout u-container-layout-7">
+                        <div class="u-clearfix u-layout-wrap u-layout-wrap-2">
+                            <div class="u-layout">
+                                <div class="u-layout-row">
+                                    <!-- ###### SIGUIENTES CONFIG ######-->
+                                    <div class="u-container-style u-layout-cell u-size-29 u-white u-layout-cell-3">
+                                        <div class="u-container-layout u-container-layout-8">
+                                            <p class="u-text u-text-default u-text-6">Texto de ejemplo. Lorem ipsum
+                                                dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                                                suscipit ultrices.</p>
+                                        </div>
+                                    </div>                                    
+                                    <div class="u-container-style u-layout-cell u-size-31 u-layout-cell-4">
+                                        <div class="u-container-layout u-container-layout-9">
+                                            <div class="u-expanded-width u-tab-links-align-justify u-tabs u-tabs-3">
+                                                <!-- ###### SIGUIENTES SOLAPAS RECOMENDACIONES ######-->
+                                                <ul class="u-black u-tab-list u-unstyled u-tab-list-3" role="tablist">
+                                                    <!-- ###### SIGUIENTES SOLAPA NIST ######-->
+                                                    <li class="u-tab-item" role="presentation">
+                                                        <a class="active u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-6"
+                                                            id="link-tab-9db2" href="#tab-9db2" role="tab"
+                                                            aria-controls="tab-9db2" aria-selected="true">NIST</a>
+                                                    </li>
+                                                    <!-- ###### SIGUIENTES SOLAPA RECOMENDACIONES ######-->
+                                                    <li class="u-tab-item" role="presentation">
+                                                        <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-7"
+                                                            id="link-tab-fbc2" href="#tab-fbc2" role="tab"
+                                                            aria-controls="tab-fbc2"
+                                                            aria-selected="false">Recomendaciones</a>
+                                                    </li>
+                                                    <!-- ###### SIGUIENTES SOLAPA BUENAS PRACTICAS ######-->
+                                                    <li class="u-tab-item" role="presentation">
+                                                        <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-8"
+                                                            id="link-tab-cce5" href="#tab-cce5" role="tab"
+                                                            aria-controls="tab-cce5" aria-selected="false">Buenas
+                                                            prácticas</a>
+                                                    </li>
+                                                </ul>
+                                                <!-- ###### SIGUIENTES RECO CONTENEDOR ######-->
+                                                <div class="u-tab-content">
+                                                    <!-- ###### SIGUIENTES RECO CONTENEDOR NIST ######-->
+                                                    <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-6"
+                                                        id="tab-9db2" role="tabpanel" aria-labelledby="link-tab-9db2">
+                                                        <div class="u-container-layout u-container-layout-10">
+                                                            <p class="u-text u-text-default u-text-7">Texto de ejemplo.
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                                nullam nunc justo sagittis suscipit ultrices.1</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ###### SIGUIENTES RECO CONTENEDOR RECOMENDACIONES ######-->
+                                                    <div class="u-container-style u-tab-pane u-white u-tab-pane-7"
+                                                        id="tab-fbc2" role="tabpanel" aria-labelledby="link-tab-fbc2">
+                                                        <div class="u-container-layout u-container-layout-11">
+                                                            <p class="u-text u-text-default u-text-8">Texto de ejemplo.
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                                nullam nunc justo sagittis suscipit ultrices.</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ###### SIGUIENTES RECO CONTENEDOR BUENAS PRACTICAS ######-->
+                                                    <div class="u-container-style u-tab-pane u-white u-tab-pane-8"
+                                                        id="tab-cce5" role="tabpanel" aria-labelledby="link-tab-cce5">
+                                                        <div class="u-container-layout u-container-layout-12">
+                                                            <p class="u-text u-text-default u-text-9">Texto de ejemplo.
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                                nullam nunc justo sagittis suscipit ultrices.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{% url 'Reporte' %}" target="_blank"
+            class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-palette-4-base u-btn-1">PDF</a>
+    </div>
+</section>
+
+<!-- [ breadcrumb ] end -->
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- PILLS DISPOSITIVOS -->
+                <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-dispo-tab-0" data-bs-toggle="pill"
+                            data-bs-target="#pills-dispo-0" type="button" role="tab" aria-controls="pills-dispo-0"
+                            aria-selected="true">
+                            Dispositivo 0
+                        </button>
+                    </li>
+                    {% for lcont in cont_demas %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-dispo-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-dispo" type="button" role="tab" aria-controls="pills-dispo"
+                            aria-selected="false">
+                            Dispositivo {{forloop.counter}}
+                        </button>
+                    </li>
+                    {% endfor %}
+                    <div>
+                        <a href="{% url 'Reporte' %}" target="_blank" class="btn btn-sm btn-success">Generate
+                            Pdf</a>
+                    </div>
+                </ul>
+                <!-- CONTENIDO CADA PILL -->
+                <div class="tab-content" id="pills-tabContent2" style="overflow-y: scroll;height: 71vh;">
+                    <div class="tab-pane fade show active" id="pills-dispo-0" role="tabpanel"
+                        aria-labelledby="pills-dispo-tab-0">
+                        <div class="card" style="float: left; width: 45%;">
+                            <div class="card-body">
+                                <h6><b>Configuración analizada</b><br><br></h6>
+                                <div class="card-body" style="overflow-y: scroll;height: 80vh;">
+                                    <p class="mb-3">{{cont_uno|linebreaks}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="float: right; width: 50%;">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">
+                                        <b>Recomendaciones</b>
+                                        <span class="badge bg-primary">
+                                            {{reco_uno|length}}
+                                        </span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-profile" type="button" role="tab"
+                                        aria-controls="pills-profile" aria-selected="false">
+                                        <b>Compliance NIST</b>
+                                        <span class="badge bg-danger">
+                                            {{nist_uno|length}}
+                                        </span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-contact" type="button" role="tab"
+                                        aria-controls="pills-contact" aria-selected="false">
+                                        <b>Buenas prácticas</b>
+                                        <span class="badge bg-success">
+                                            {{buep_uno|length}}
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent" style="overflow-y: scroll;height: 71vh;">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    {% for ru in reco_uno %}
+                                    <div class="card">
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Descripción:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{ru.DESCRIPCION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Razón:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{ru.RECOMENDACIÓN}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Impacto:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{ru.IMPACTO}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Remediación:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{ru.REMEDIACION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Comando:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{ru.COM_REM}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                NIST:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{ru.NIST}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                    {% for nu in nist_uno %}
+                                    <div class="card">
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Descripción:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{nu.DESCRIPCION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Razón:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{nu.RECOMENDACIÓN}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Impacto:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{nu.IMPACTO}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Remediación:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{nu.REMEDIACION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Comando:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{nu.COM_REM}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                NIST:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{nu.NIST}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                    aria-labelledby="pills-contact-tab">
+                                    {% for bu in buep_uno %}
+                                    <div class="card">
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Descripción:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{bu.DESCRIPCION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Razón:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{bu.RECOMENDACIÓN}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Impacto:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{bu.IMPACTO}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Remediación:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{bu.REMEDIACION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Comando:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{bu.COM_REM}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                NIST:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{bu.NIST}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for econt in cont_demas %}
+                    <div class="tab-pane fade show" id="pills-dispo" role="tabpanel" aria-labelledby="pills-dispo-tab">
+                        <div class="card" style="float: left; width: 45%;">
+                            <div class="card-body">
+                                <h6>Configuración analizada<br><br></h6>
+                                <div class="card-body" style="overflow-y: scroll;height: 80vh;">
+                                    <p class="mb-3">{{econt|linebreaks}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="float: right; width: 50%;">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">
+                                        Recomendaciones
+                                        <span class="badge bg-primary">
+                                            {{forloop.counter}}
+                                        </span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-profile" type="button" role="tab"
+                                        aria-controls="pills-profile" aria-selected="false">
+                                        Compliance NIST
+                                        <span class="badge bg-danger">
+                                            {{forloop.counter}}
+                                        </span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-contact" type="button" role="tab"
+                                        aria-controls="pills-contact" aria-selected="false">
+                                        Buenas prácticas
+                                        <span class="badge bg-success">
+                                            {{forloop.counter}}
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent" style="overflow-y: scroll;height: 71vh;">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    {% for rd in reco_demas %}
+                                    <div class="card">
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Descripción:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">
+                                                    {{rd.DESCRIPCION}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Razón:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{rd.RECOMENDACIÓN}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Impacto:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{rd.IMPACTO}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Remediación:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{rd.REMEDIACION}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                Comando:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{rd.COM_REM}}</p>
+                                            </div>
+                                        </div>
+                                        <div style="margin:10px">
+                                            <div style="width: 15%; float: left; font-size: smaller;">
+                                                NIST:
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <p class="mb-3" style="font-size: smaller;">{{rd.NIST}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                    Contenido 2
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                    aria-labelledby="pills-contact-tab">
+                                    Contenido 3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //    let dispoBar = document.querySelector("#pills-dispo-tab");
+    //    let dispoNum = dispoBar.length-1;
+    //    for (var i=0; i<dispoNum ;i++){ 
+    //        dispoBar[i].id.replace("pills-dispo-tab", `pepe-${i}-`);
+    //    }
+    //    document.getElementById("pills-dispo-tab");
+
+    var elms = document.querySelectorAll("[id='pills-dispo-tab']");
+    for (var i = 0; i < elms.length; i++) {
+
+        elms[i].id = `pills-dispo-tab-${i + 1}`;
+        elms[i].dataset.bsTarget = `#pills-dispo-${i + 1}`;
+        elms[i].setAttribute('aria-controls', `#pills-dispo-${i + 1}`);
+        //console.log(elms[i].getAttributeNames());
+        //console.log(elms[i]["aria-controls"]);
+    }
+    var conte = document.querySelectorAll("[id='pills-dispo']");
+    for (var i = 0; i < conte.length; i++) {
+        //console.log(conte[i]);
+        conte[i].id = `pills-dispo-${i + 1}`;
+        conte[i].setAttribute('aria-labelledby', `pills-dispo-tab-${i + 1}`);
+        //console.log(conte[i].getAttributeNames());
+
+    }
+    //<button class="nav-link" id="pills-dispo-tab" data-bs-toggle="pill" data-bs-target="#pills-dispo" type="button" role="tab" aria-controls="pills-other2" aria-selected="false">
+
+    var elms2 = document.querySelectorAll("[id='pills-dispo-tab']");
+    for (var i = 0; i < elms2.length; i++) {
+
+        elms2[i].id = `pills-dispo-tab-${i + 1}`;
+        elms2[i].dataset.bsTarget = `#pills-dispo-${i + 1}`;
+        elms2[i].setAttribute('aria-controls', `#pills-dispo-${i + 1}`);
+        //console.log(elms[i].getAttributeNames());
+        //console.log(elms[i]["aria-controls"]);
+    }
+    var conte2 = document.querySelectorAll("[id='pills-dispo']");
+    for (var i = 0; i < conte2.length; i++) {
+        //console.log(conte[i]);
+        conte2[i].id = `pills-dispo-${i + 1}`;
+        conte2[i].setAttribute('aria-labelledby', `pills-dispo-tab-${i + 1}`);
+        //console.log(conte[i].getAttributeNames());
+
+    }
+</script>
+{% endblock %}

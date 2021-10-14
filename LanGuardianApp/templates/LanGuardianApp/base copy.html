@@ -1,0 +1,128 @@
+<html>
+
+<head>
+
+  {% load static %}
+
+  <!-- Bootstrap -->
+  <link href="{% static 'LanGuardianApp/vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+  <!-- Fonts -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+
+  <!-- Styles -->
+  <link href="{% static 'LanGuardianApp/css/gestion.css' %}" rel="stylesheet">
+  
+</head>
+
+<body>
+  <section class="page-section clearfix" style="text-align: center; ">
+    <div class="container">
+      <div class="intro">
+        <p><img class="" src="{% static 'LanGuardianApp/img/L13.png' %}" alt="" style="width: 40%; "></p>
+      </div>
+    </div>
+  </section>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarCenteredExample"
+        aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+        <!-- Left links -->
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/analisis/">Analizar dispositivos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Categorías NIST</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!--nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+      <div class="navbar-brand header-logo">
+        <a href="/" class="b-brand">
+          <span class="b-title"><b>LAN GUARDIAN</b></span>
+        </a>
+        <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+      </div>
+      <div class="navbar-content scroll-div">
+        <ul class="nav pcoded-inner-navbar">
+          <li class="nav-item pcoded-menu-caption">
+            <label>Análisis</label>
+          </li>
+          <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
+            class="nav-item {% if 'index' in segment %} active {% endif %}">
+            <a href="/analisis/" class="nav-link "><span class="pcoded-micon"><i
+                  class="feather icon-home"></i></span><span class="pcoded-mtext">Escanear dispositivos</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav-->
+  <!-- Contenido -->
+  <!--div class="pcoded-main-container"-->
+  <div>
+    <div class="pcoded-wrapper">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer text-faded text-center py-5">
+    <div class="container">
+      <p class="m-0">
+        <a href="#" class="link">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+        <a href="#" class="link">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+        <a href="#" class="link">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </p>
+      <p class="m-0 mbt">
+        <a href="sample.html" class="link">Política de privacidad</a> ·
+        <a href="sample.html" class="link">Aviso legal</a> ·
+        <a href="sample.html" class="link">Cookies</a>
+      </p>
+      <p class="m-0 mbt1">&copy; LANGUARDIAN 2021</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap -->
+  <script src="{% static 'LanGuardianApp/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'LanGuardianApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>

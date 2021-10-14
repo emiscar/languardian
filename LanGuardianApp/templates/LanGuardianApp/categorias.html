@@ -1,0 +1,702 @@
+{% extends "LanGuardianApp/base.html" %}
+{% load static %}
+{% block content %}
+<link href="{% static 'LanGuardianApp/css/categorias.css' %}" rel="stylesheet" media="screen">
+<section class="u-clearfix u-palette-1-base u-section-1" id="sec-95d9">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-tab-links-align-justify u-tabs u-tabs-1">
+            <ul class="u-black u-spacing-30 u-tab-list u-unstyled u-tab-list-1" role="tablist">
+                <li class="u-tab-item u-tab-item-1" role="presentation">
+                    <a class="active u-active-palette-2-base u-button-style u-tab-link u-tab-link-1" id="link-tab-081f"
+                        href="#tab-081f" role="tab" aria-controls="tab-081f" aria-selected="true">Identificar</a>
+                </li>
+                <li class="u-tab-item u-tab-item-2" role="presentation">
+                    <a class="u-active-palette-2-base u-button-style u-tab-link u-tab-link-2" id="link-tab-4d57"
+                        href="#tab-4d57" role="tab" aria-controls="tab-4d57" aria-selected="false">Proteger</a>
+                </li>
+                <li class="u-tab-item u-tab-item-3" role="presentation">
+                    <a class="u-active-palette-2-base u-button-style u-tab-link u-tab-link-3" id="link-tab-3a42"
+                        href="#tab-3a42" role="tab" aria-controls="tab-3a42" aria-selected="false">Detectar</a>
+                </li>
+                <li class="u-tab-item u-tab-item-4" role="presentation">
+                    <a class="u-active-palette-2-base u-button-style u-tab-link u-tab-link-4" id="tab-d7e7"
+                        href="#link-tab-d7e7" role="tab" aria-controls="link-tab-d7e7"
+                        aria-selected="false">Responder</a>
+                </li>
+            </ul>
+            <div class="u-tab-content">
+                <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-081f"
+                    role="tabpanel" data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                    data-animation-direction="">
+                    <div class="u-container-layout u-container-layout-1">
+                        <h4 class="u-text u-text-default u-text-1">DescripCiÓn</h4>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"
+                            data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                            data-animation-direction=""></div>
+                        <p class="u-align-justify u-text u-text-2"> Desarrollar una comprensión organizacional para
+                            administrar el riesgo de seguridad&nbsp;cibernética para sistemas, personas, activos, datos
+                            y capacidades. Las actividades en la Función Identificar son fundamentales para el uso
+                            efectivo del Marco. <br>Comprender el contexto empresarial, los recursos que respaldan las
+                            funciones críticas y los riesgos de&nbsp;seguridad cibernética relacionados permite que una
+                            organización se enfoque y priorice sus esfuerzos
+                            de manera consistente con su estrategia de gestión de riesgos y sus necesidades
+                            empresariales. Los
+                            ejemplos de Categorías de resultados dentro de esta Función incluyen: Gestión de ctivos,
+                            Entorno de
+                            negocios, Gobernanza, Evaluación de riesgos y Estrategia de gestión de riesgos.
+                        </p>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-2"></div>
+                        <div class="u-table u-table-responsive u-table-1">
+                            <table class="u-table-entity">
+                                <colgroup>
+                                    <col width="50%">
+                                    <col width="50%">
+                                </colgroup>
+                                <thead class="u-align-center u-palette-4-base u-table-header u-table-header-1">
+                                    <tr style="height: 38px;">
+                                        <th class="u-table-cell">Categoría</th>
+                                        <th class="u-table-cell">Subcategoría</th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="u-align-justify u-table-alt-palette-1-light-3 u-table-body u-table-body-1">
+                                    <tr style="height: 80px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Gestión
+                                            de activos (<b style="color: red;">ID.AM</b>): Los datos, el personal, los
+                                            dispositivos, los sistemas y
+                                            las instalaciones que permiten a la organización alcanzar los objetivos
+                                            empresariales se identifican y se administran de forma coherente con su
+                                            importancia relativa para los objetivos organizativos y la estrategia de
+                                            riesgos de la organización. </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.AM-6</b>:
+                                            Los roles y las responsabilidades de la seguridad cibernética para toda la
+                                            fuerza de trabajo y terceros interesados (por ejemplo, proveedores,
+                                            clientes,
+                                            socios) están establecidas.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 51px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Evaluación de riesgos (<b style="color: red;">ID.RA</b>): La organización
+                                            comprende el
+                                            riesgo de seguridad cibernética para las operaciones de la organización
+                                            (incluida la misión, las funciones, la imagen o la reputación), los activos
+                                            de la organización y las personas. </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RA-1</b>:
+                                            Se identifican y se documentan las vulnerabilidades de los activos.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 27px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RA-2</b>:
+                                            La inteligencia de amenazas cibernéticas se recibe de foros y fuentes de
+                                            intercambio de información.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RA-3</b>:
+                                            Se identifican y se documentan las amenazas, tanto internas como externas.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 27px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RA-4</b>:
+                                            Se identifican los impactos y las probabilidades del negocio.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RA-5</b>:
+                                            Se utilizan las amenazas, las vulnerabilidades, las probabilidades y los
+                                            impactos para determinar el riesgo.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 37px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RA-6</b>:
+                                            Se identifican y priorizan las respuestas al riesgo.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 29px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Estrategia
+                                            de gestión de riesgos (<b style="color: red;">ID.RM</b>): Se establecen las
+                                            prioridades, restricciones,
+                                            tolerancias de riesgo y suposiciones de la organización y se usan para
+                                            respaldar las decisiones de riesgos operacionales.&nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.RM-1</b>:
+                                            Los actores de la organización establecen, gestionan y acuerdan los procesos
+                                            de gestión de riesgos.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 61px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Gestión
+                                            del riesgo de la cadena de suministro (<b style="color: red;">ID.SC</b>):
+                                            Las prioridades,
+                                            limitaciones,
+                                            tolerancias de riesgo y suposiciones de la organización se establecen y se
+                                            utilizan para respaldar las decisiones de riesgo asociadas con la gestión
+                                            del
+                                            riesgo de la cadena de suministro. La organización ha establecido e
+                                            implementado los procesos para identificar, evaluar y gestionar los riesgos
+                                            de la cadena de suministro.&nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">ID.SC-1</b>:
+                                            Los actores de la organización identifican, establecen, evalúan, gestionan y
+                                            acuerdan los procesos de gestión del riesgo de la cadena de suministro
+                                            cibernética.&nbsp;
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-4d57" role="tabpanel"
+                    data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                    data-animation-direction="">
+                    <div class="u-container-layout u-container-layout-2">
+                        <h4 class="u-text u-text-default u-text-3" data-animation-name="" data-animation-duration="0"
+                            data-animation-delay="0" data-animation-direction="">DescripCiÓn</h4>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-3"
+                            data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                            data-animation-direction=""></div>
+                        <p class="u-align-justify u-text u-text-4"> Desarrollar e implementar medidas de seguridad
+                            adecuadas para garantizar la entrega de
+                            servicios críticos. <br>La función Proteger admite la capacidad de limitar o contener el
+                            impacto de un posible evento de
+                            seguridad cibernética. Los ejemplos de categorías de resultados dentro de esta función
+                            incluyen: <br>Gestión de identidad y control de acceso, Conciencia y entrenamiento,
+                            Seguridad de datos,
+                            Procesos y procedimientos de protección de la información, Mantenimiento y Tecnología de
+                            protección.
+                        </p>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-4"></div>
+                        <div class="u-table u-table-responsive u-table-2" data-animation-name=""
+                            data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+                            <table class="u-table-entity">
+                                <colgroup>
+                                    <col width="50%">
+                                    <col width="50%">
+                                </colgroup>
+                                <thead class="u-align-center u-palette-4-base u-table-header u-table-header-2">
+                                    <tr style="height: 25px;">
+                                        <th class="u-table-cell">Categoría</th>
+                                        <th class="u-table-cell">Subcategoría</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="u-align-left u-table-alt-palette-1-light-3 u-table-body u-table-body-2">
+                                    <tr style="height: 35px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Gestión de identidad, autenticación y control de acceso (<b
+                                                style="color: red;">PR.AC</b>):
+                                            El acceso a los activos físicos y lógicos y a las instalaciones asociadas
+                                            está limitado a los usuarios, procesos y dispositivos autorizados, y se
+                                            administra de forma coherente con el riesgo evaluado de acceso no autorizado
+                                            a actividades autorizadas y transacciones. </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AC-1</b>:
+                                            Las identidades y credenciales se emiten, se administran, se verifican, se
+                                            revocan y se auditan para los dispositivos, usuarios y procesos autorizados.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 27px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AC-4</b>:
+                                            Se gestionan los permisos y autorizaciones de acceso con incorporación de
+                                            los
+                                            principios de menor privilegio y separación de funciones.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 31px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AC-5</b>:
+                                            Se protege la integridad de la red (por ejemplo, segregación de la red,
+                                            segmentación de la red).&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 27px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AC-6</b>:
+                                            Las identidades son verificadas y vinculadas a credenciales y afirmadas en
+                                            las interacciones.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 54px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AC-7</b>:
+                                            Se autentican los usuarios, dispositivos y otros activos (por ejemplo,
+                                            autenticación de un solo factor o múltiples factores) acorde al riesgo de la
+                                            transacción (por ejemplo, riesgos de seguridad y privacidad de individuos y
+                                            otros riesgos para las organizaciones).&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 26px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Concienciación y capacitación (<b style="color: red;">PR.AT</b>): El
+                                            personal y los socios
+                                            de la organización reciben educación de concienciación sobre la seguridad
+                                            cibernética y son capacitados para cumplir con sus deberes y
+                                            responsabilidades relacionados con la seguridad cibernética, en conformidad
+                                            con las políticas, los procedimientos y los acuerdos relacionados al campo.
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AT-1</b>:
+                                            Todos los usuarios están informados y capacitados.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 26px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AT-2</b>:
+                                            Los usuarios privilegiados comprenden sus roles y responsabilidades.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 29px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AT-3</b>:
+                                            Los terceros interesados (por ejemplo, proveedores, clientes, socios)
+                                            comprenden sus roles y responsabilidades.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 28px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AT-4</b>:
+                                            Los ejecutivos superiores comprenden sus roles y responsabilidades.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 26px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.AT-5</b>:
+                                            El personal de seguridad física y cibernética comprende sus roles y
+                                            responsabilidades.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 45px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Seguridad
+                                            de los datos (<b style="color: red;">PR.DS</b>): La información y los
+                                            registros (datos) se gestionan en
+                                            función de la estrategia de riesgo de la organización para proteger la
+                                            confidencialidad, integridad y disponibilidad de la información.&nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.DS-6</b>:
+                                            Se utilizan mecanismos de comprobación de la integridad para verificar el
+                                            software, el firmware y la integridad de la información.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 69px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Procesos y procedimientos de protección de la información
+                                            (<b style="color: red;">PR.IP</b>): Se mantienen y se utilizan políticas de
+                                            seguridad (que abordan el
+                                            propósito, el alcance, los roles, las responsabilidades, el compromiso de la
+                                            jefatura y la coordinación entre las entidades de la organización), procesos
+                                            y procedimientos para gestionar la protección de los sistemas de información
+                                            y los activos.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.IP-1</b>:
+                                            Se crea y se mantiene una configuración de base de los sistemas de control
+                                            industrial y de tecnología de la información con incorporación de los
+                                            principios de seguridad (por ejemplo, el concepto de funcionalidad
+                                            mínima).&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.IP-3</b>:
+                                            Se encuentran establecidos procesos de control de cambio de la
+                                            configuración.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 31px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.IP-11</b>:
+                                            La seguridad cibernética se encuentra incluida en las prácticas de recursos
+                                            humanos (por ejemplo, desaprovisionamiento, selección del personal).&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 26px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.IP-12</b>:
+                                            Se desarrolla y se implementa un plan de gestión de las
+                                            vulnerabilidades.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 33px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Mantenimiento
+                                            (<b style="color: red;">PR.MA</b>): El mantenimiento y la reparación de los
+                                            componentes del sistema de
+                                            información y del control industrial se realizan de acuerdo con las
+                                            políticas
+                                            y los procedimientos.&nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.MA-2</b>:
+                                            El mantenimiento remoto de los activos de la organización se aprueba, se
+                                            registra y se realiza de manera que evite el acceso no autorizado.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 51px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Tecnología de protección (<b style="color: red;">PR.PT</b>): Las soluciones
+                                            técnicas de
+                                            seguridad se gestionan para garantizar la seguridad y la capacidad de
+                                            recuperación de los sistemas y activos, en consonancia con las políticas,
+                                            procedimientos y acuerdos relacionados.&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.PT-1</b>:
+                                            Los registros de auditoría o archivos se determinan, se documentan, se
+                                            implementan y se revisan en conformidad con la política.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">PR.PT-3</b>:
+                                            Se incorpora el principio de menor funcionalidad mediante la configuración
+                                            de
+                                            los sistemas para proporcionar solo las capacidades esenciales.&nbsp;
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="u-container-style u-tab-pane u-white u-tab-pane-3" id="tab-3a42" role="tabpanel"
+                    data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                    data-animation-direction="">
+                    <div class="u-container-layout u-container-layout-3">
+                        <h4 class="u-text u-text-default u-text-5" data-animation-name="" data-animation-duration="0"
+                            data-animation-delay="0" data-animation-direction="">DescripCiÓn</h4>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-5"
+                            data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                            data-animation-direction=""></div>
+                        <p class="u-align-justify u-text u-text-6"> Desarrollar e implementar actividades apropiadas
+                            para identificar la ocurrencia de un
+                            evento de seguridad cibernética. <br>La Función Detectar permite el descubrimiento oportuno
+                            de eventos de seguridad cibernética. <br>Los ejemplos de categorías de resultados dentro de
+                            esta función incluyen: Anomalías y eventos,
+                            Monitoreo continuo de seguridad y Procesos de detección.
+                        </p>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-6"></div>
+                        <div class="u-table u-table-responsive u-table-3" data-animation-name=""
+                            data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+                            <table class="u-table-entity">
+                                <colgroup>
+                                    <col width="50%">
+                                    <col width="50%">
+                                </colgroup>
+                                <thead class="u-align-center u-palette-4-base u-table-header u-table-header-3">
+                                    <tr style="height: 25px;">
+                                        <th class="u-table-cell">Categoría</th>
+                                        <th class="u-table-cell">Subcategoría</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="u-align-left u-table-alt-palette-1-light-3 u-table-body u-table-body-3">
+                                    <tr style="height: 36px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Anomalías y Eventos (<b style="color: red;">DE.AE</b>): se detecta actividad
+                                            anómala y se
+                                            comprende el impacto potencial de los eventos. </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.AE-1</b>:
+                                            Se establece y se gestiona una base de referencia para operaciones de red y
+                                            flujos de datos esperados para los usuarios y sistemas.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 35px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.AE-2</b>:
+                                            Se analizan los eventos detectados para comprender los objetivos y métodos
+                                            de
+                                            ataque.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 35px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.AE-3</b>:
+                                            Cos datos de los eventos se recopilan y se correlacionan de múltiples
+                                            fuentes
+                                            y sensores.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 26px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.AE-4</b>:
+                                            Se determina el impacto de los eventos.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 33px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.AE-5</b>:
+                                            Se establecen umbrales de alerta de incidentes.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 47px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Monitoreo Continuo de la Seguridad (<b style="color: red;">DE.CM</b>): El
+                                            sistema de
+                                            información y los activos son monitoreados a fin de identificar eventos de
+                                            seguridad cibernética y verificar la eficacia de las medidas de
+                                            protección.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.CM-1</b>:
+                                            Se monitorea la red para detectar posibles eventos de seguridad cibernética.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 27px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.CM-3</b>:
+                                            Se monitorea la actividad del personal para detectar posibles eventos de
+                                            seguridad cibernética.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 27px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.CM-4</b>:
+                                            Se detecta el código malicioso.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 41px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.CM-7</b>:
+                                            Se realiza el monitoreo del personal, conexiones, dispositivos y software no
+                                            autorizados.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 29px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">DE.CM-8</b>:
+                                            Se realizan escaneos de vulnerabilidades.&nbsp;
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="u-container-style u-tab-pane u-white u-tab-pane-4" id="link-tab-d7e7" role="tabpanel"
+                    data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                    data-animation-direction="">
+                    <div class="u-container-layout u-container-layout-4">
+                        <h4 class="u-text u-text-default u-text-7" data-animation-name="" data-animation-duration="0"
+                            data-animation-delay="0" data-animation-direction="">DescripCiÓn</h4>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-7"></div>
+                        <p class="u-align-justify u-text u-text-8"> Desarrollar e implementar actividades apropiadas
+                            para tomar medidas con respecto
+                            a un incidente detectado de seguridad cibernética. <br>La función Responder respalda la
+                            capacidad de contener el impacto de un posible incidente de
+                            seguridad cibernética. Los ejemplos de categorías de resultados dentro de esta función
+                            incluyen:
+                            Planificación de respuesta, Comunicaciones, Análisis, Mitigación y Mejoras.
+                        </p>
+                        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-8"></div>
+                        <div class="u-table u-table-responsive u-table-4" data-animation-name=""
+                            data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+                            <table class="u-table-entity">
+                                <colgroup>
+                                    <col width="50%">
+                                    <col width="50%">
+                                </colgroup>
+                                <thead class="u-align-center u-palette-4-base u-table-header u-table-header-4">
+                                    <tr style="height: 34px;">
+                                        <th
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-table-cell">
+                                            Categoría</th>
+                                        <th
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-table-cell">
+                                            Subcategoría</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="u-align-left u-table-alt-palette-1-light-3 u-table-body u-table-body-4">
+                                    <tr style="height: 28px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Análisis (<b style="color: red;">RS.AN</b>): Se lleva a cabo el análisis
+                                            para garantizar
+                                            una respuesta eficaz y apoyar las actividades de recuperación. </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">RS.AN-1</b>:
+                                            Se investigan las notificaciones de los sistemas de detección.&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 55px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">RS.AN-5</b>:
+                                            Se establecen procesos para recibir, analizar y responder a las
+                                            vulnerabilidades divulgadas a la organización desde fuentes internas y
+                                            externas (por ejemplo, pruebas internas, boletines de seguridad o
+                                            investigadores de seguridad).&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 32px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            Mitigación
+                                            (<b style="color: red;">RS.MI</b>): Se realizan actividades para evitar la
+                                            expansión de un evento,
+                                            mitigar sus efectos y resolver el incidente.&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">RS.MI-2</b>:
+                                            Los incidentes son mitigados.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 66px;">
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                        </td>
+                                        <td
+                                            class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-table-cell">
+                                            <b style="color: red;">RS.MI-3</b>:
+                                            Las vulnerabilidades recientemente identificadas son mitigadas o se
+                                            documentan como riesgos aceptados.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

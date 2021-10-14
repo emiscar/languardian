@@ -14,10 +14,17 @@ from django.urls import reverse
 from urllib.parse import urlencode
 
 from django.http import FileResponse, response
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import inch
+#from reportlab.pdfgen import canvas
+#from reportlab.lib.pagesizes import A4
+#from reportlab.lib.units import inch
 from django.views.generic import View
+
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
 
 # VISTA DE CLASE PARA GENERAR EL FORMULARIO DE 1 O MAS DISPOSITIVOS, CONECTARSE Y ALMACENAR LAS CONFIG
 class DispositivosView(TemplateView):
@@ -127,7 +134,7 @@ def con_telnet(ip, puerto, usuario, clave, id):
 
             return True
     except Exception as ex:
-        print(str(ex))
+        #print(str(ex))
         return (str(ex))
 
 # VISTA PARA MOSTRAR LAS CONFIGURACIONES Y RECOMENDACIONES, GENERAR REPORTES PDF
@@ -141,7 +148,7 @@ def configuracion(request):
     buep_uno = []
     buep_demas = []
     c_dispo = request.GET.get('cant_dispo')
-    print(c_dispo)
+    #print(c_dispo)
     ## GUARDO LA CONFIG PARA PASARLA A LA WEB ##
     for i in range(int(c_dispo)):
         if i == 0:
@@ -159,15 +166,15 @@ def configuracion(request):
                 if len(eval(comando)) == 0:
                     if (df.iloc[index, 7] == 1):
                         reco_uno.append(row[1:7])
-                        print("Entre 1")
+                        #print("Entre 1")
                     elif (df.iloc[index, 7] == 2):
                         nist_uno.append(row[1:7])
-                        print("Entre 2")
+                        #print("Entre 2")
                     else:
                         buep_uno.append(row[1:7])
-                        print("Entre 3")
+                        #print("Entre 3")
             #LLAMO AL METODO PARA GENERAR PDF
-            reporgen (0, reco_uno)
+            #reporgen (0, reco_uno)
         else:
             f = open("config"+str(i)+".txt", "r",encoding='utf-8')
             cont_demas.append (f.read())
@@ -183,70 +190,70 @@ def configuracion(request):
                 if len(eval(comando)) == 0:
                     if (df.iloc[index, 7] == 1):
                         reco_demas.append(row[1:7])
-                        print("R_demas "+str(index)+" con ")
-                        print(reco_demas)
+                        #print("R_demas "+str(index)+" con ")
+                        #print(reco_demas)
                     elif (df.iloc[index, 7] == 2):
                         nist_demas.append(row[1:7])
                     else:
                         buep_demas.append(row[1:7])
             reco_d.append(reco_demas)
             #LLAMO AL METODO PARA GENERAR PDF
-            reporgen (i, reco_demas)
-        print("RECO D)")
-        print (reco_d)
-    return render(request,"LanGuardianCont/configuracion.html", {'cont_demas':cont_demas, 'reco_demas':reco_d, 'cant':int(c_dispo), 'cont_uno':cont_uno, 'reco_uno':reco_uno, 'nist_uno':nist_uno, 'buep_uno':buep_uno})
+            #reporgen (i, reco_demas)
+        #print("RECO D)")
+        #print (reco_d)
+    return render(request,"LanGuardianCont/configuracion.html", {'cont_demas':cont_demas, 'reco_demas':reco_demas, 'cant':int(c_dispo), 'cont_uno':cont_uno, 'reco_uno':reco_uno, 'nist_uno':nist_uno, 'buep_uno':buep_uno})
 
 # METODO QUE GENERA LOS PDF
-def reporgen (indi, recos):
-    import time
-    from reportlab.lib.enums import TA_JUSTIFY
-    from reportlab.lib.pagesizes import letter
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.lib.units import inch
-    doc = SimpleDocTemplate("config"+str(indi)+".pdf",pagesize=A4,rightMargin=36,leftMargin=36,topMargin=36,bottomMargin=36)
-    Story=[]
-    logo = "L13.png"
-    tit1 = "RECOMENDACIONES"
-    tit2 = "COMPLIANCE NIST"
-    tit3 = "BUENAS PRACTICAS"
-    magName = "Pythonista"
-    issueNum = 12
-    subPrice = "99.00"
-    limitedDate = "03/05/2010"
-    freeGift = "tin foil hat"
-    formatted_time = "Reporte generado el "+time.ctime()+" para el dispositivo XXXXX"
-    full_name = "Mike Driscoll"
-    address_parts = ["411 State St.", "Marshalltown, IA 50158"]
-    im = Image(logo, width=300, height=50)
+#def reporgen (indi, recos):
+#    import time
+#    from reportlab.lib.enums import TA_JUSTIFY
+#    from reportlab.lib.pagesizes import letter
+#    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+#    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+#    from reportlab.lib.units import inch
+#    doc = SimpleDocTemplate("config"+str(indi)+".pdf",pagesize=A4,rightMargin=36,leftMargin=36,topMargin=36,bottomMargin=36)
+#    Story=[]
+#    logo = "L13.png"
+#    tit1 = "RECOMENDACIONES"
+#    tit2 = "COMPLIANCE NIST"
+#    tit3 = "BUENAS PRACTICAS"
+#    magName = "Pythonista"
+#    issueNum = 12
+#    subPrice = "99.00"
+#    limitedDate = "03/05/2010"
+#    freeGift = "tin foil hat"
+#    formatted_time = "Reporte generado el "+time.ctime()+" para el dispositivo XXXXX"
+#    full_name = "Mike Driscoll"
+#    address_parts = ["411 State St.", "Marshalltown, IA 50158"]
+#    im = Image(logo, width=300, height=50)
     #Agrego el logo
-    Story.append(im)
+#    Story.append(im)
     #Agrego un espacio
-    Story.append(Spacer(1, 24))
+#    Story.append(Spacer(1, 24))
     
-    styles=getSampleStyleSheet()    
-    styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
+#    styles=getSampleStyleSheet()    
+#    styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
     #Titulo recom
-    Story.append(Paragraph(tit1, styles["Heading2"]))
-    Story.append(Spacer(1, 12))
+#    Story.append(Paragraph(tit1, styles["Heading2"]))
+#    Story.append(Spacer(1, 12))
     #Tabla recomendaciones
 
-    Story.append(Spacer(1, 12))
+#    Story.append(Spacer(1, 12))
     #Titulo Nist
-    Story.append(Paragraph(tit2, styles["Heading2"]))
-    Story.append(Spacer(1, 12))
+#    Story.append(Paragraph(tit2, styles["Heading2"]))
+#    Story.append(Spacer(1, 12))
     #Tabla Nist
 
-    Story.append(Spacer(1, 12))
+#    Story.append(Spacer(1, 12))
     #Titulo BuePrac
-    Story.append(Paragraph(tit3, styles["Heading2"]))
-    Story.append(Spacer(1, 12))
+#    Story.append(Paragraph(tit3, styles["Heading2"]))
+#    Story.append(Spacer(1, 12))
     #Tabla BuePrac
 
-    Story.append(Spacer(1, 12))
-    ptext = '%s' % formatted_time
-    Story.append(Paragraph(ptext, styles["Normal"]))
-    Story.append(Spacer(1, 12))
+#    Story.append(Spacer(1, 12))
+#    ptext = '%s' % formatted_time
+#    Story.append(Paragraph(ptext, styles["Normal"]))
+#    Story.append(Spacer(1, 12))
     # Create return address
     #ptext = '%s' % full_name
     #Story.append(Paragraph(ptext, styles["Normal"]))       
@@ -257,11 +264,11 @@ def reporgen (indi, recos):
     #ptext = 'Dear %s:' % full_name.split()[0].strip()
     #Story.append(Paragraph(ptext, styles["Normal"]))
     #Story.append(Spacer(1, 12))
-    ptext = 'Lan Guardian solo emite recomendaciones de configuración de dispositivos de red en base \
-            a las buenas prácticas del Marco de Ciberseguridad del NIST \
-            (https://www.nist.gov). \
-            La implementación de dichas recomendaciones corre por cuenta del usuario y Lan Guardian no se responsabiliza por el \
-            impacto que generen sobre la empresa'
+#    ptext = 'Lan Guardian solo emite recomendaciones de configuración de dispositivos de red en base \
+#            a las buenas prácticas del Marco de Ciberseguridad del NIST \
+#            (https://www.nist.gov). \
+#            La implementación de dichas recomendaciones corre por cuenta del usuario y Lan Guardian no se responsabiliza por el \
+#            impacto que generen sobre la empresa'
     #ptext = 'We would like to welcome you to our subscriber base for %s Magazine! \
     #        You will receive %s issues at the excellent introductory price of $%s. Please respond by\
     #        %s to start receiving your subscription and get the following free gift: %s.' % (magName, 
@@ -269,7 +276,7 @@ def reporgen (indi, recos):
     #                                                                                                subPrice,
     #                                                                                                limitedDate,
     #                                                                                                freeGift)
-    Story.append(Paragraph(ptext, styles["Justify"]))
+#    Story.append(Paragraph(ptext, styles["Justify"]))
     #Story.append(Spacer(1, 12))
     #ptext = 'Thank you very much and we look forward to serving you.'
     #Story.append(Paragraph(ptext, styles["Justify"]))
@@ -280,27 +287,51 @@ def reporgen (indi, recos):
     #ptext = 'Ima Sucker'
     #Story.append(Paragraph(ptext, styles["Normal"]))
     #Story.append(Spacer(1, 12))
-    doc.build(Story)
+#    doc.build(Story)
 
 # METODO PARA DESCARGAR EL PDF DESDE EL FRONT
-def reporte (request):
+#def reporte (request):
      
     # Create a file-like buffer to receive PDF data.
-    buffer = io.BytesIO()
+#    buffer = io.BytesIO()
 
     # Create the PDF object, using the buffer as its "file."
-    p = canvas.Canvas(buffer, pagesize=A4, bottomup=0)
+#    p = canvas.Canvas(buffer, pagesize=A4, bottomup=0)
 
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
-    p.drawString(100, 100, "Hello world.")
+#    p.drawString(100, 100, "Hello world.")
 
     # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
+#    p.showPage()
+#    p.save()
 
     # FileResponse sets the Content-Disposition header so that browsers
     # present the option to save the file.
-    buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+#    buffer.seek(0)
+#    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+def report_pdf(request):
+
+    template=get_template('LanGuardianCont/report.html')
+    context = {}
+    html = template.render(context)
+    response=HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    #write_to_file = open('test_1.pdf', "w+b")
+    #result = pisa.CreatePDF(html,dest=write_to_file)
+    #write_to_file.close()
+
+    #response = HttpResponse(content_type="application/pdf")
+    #response["Content-Disposition"] = "inline; report.pdf"
+    #font_config = FontConfiguration()
+    #HTML(string=html).write_pdf(response, font_config=font_config)
+
+    return response

@@ -13,3 +13,7 @@ pandas
 paramiko
 Pillow
 openpyxl
+pydotplus
+setuptools
+six
+xhtml2pdf

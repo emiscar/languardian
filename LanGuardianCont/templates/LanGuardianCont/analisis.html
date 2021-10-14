@@ -1,55 +1,73 @@
 {% extends "LanGuardianApp/base.html" %}
 {% load static %}
 {% block content %}
-
-<div class="pcoded-content">
-    <div class="pcoded-inner-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">Escanear dispositivos</h5>
-                        </div>
-                    </div>
+<!--script class="u-script" type="text/javascript" src="{% static 'LanGuardianApp/js/formsmgmt.js' %}" defer=""></script-->
+<link href="{% static 'LanGuardianApp/css/analisis.css' %}" rel="stylesheet" media="screen">
+<!--link href="{% static 'LanGuardianApp/css/gestion.css' %}" rel="stylesheet"-->
+<section class="u-clearfix u-palette-1-base u-section-1" id="sec-89a6">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <h4 class="u-custom-font u-text u-text-font u-text-1">Dispositivos</h4>
+        <div class="u-form u-form-1">
+            <form id="form-containerr" method="POST">
+                {% csrf_token %}
+                {{miform.management_form}}
+                {% for form in miform %}
+                <div class="dispositivos-form">
+                    {{form.as_table}}
                 </div>
-            </div>
-        </div>
-        <!-- [ breadcrumb ] end -->
-        <div class="main-body">
-            <div class="page-wrapper">
-                <!-- [ Main Content ] start -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>Dispositivos</h5>
-                                <hr>
-                                <div class="row">
-                                </div>
-
-                                <form id="form-containerr" method="POST">
-                                    {% csrf_token %}
-                                    {{miform.management_form}}
-                                    {% for form in miform %}
-                                    <div class="dispositivos-form">
-                                        {{form.as_table}}
-                                    </div>
-                                    {% endfor %}
-                                    <button id="add-form" type="button" class="btn btn-primary"
-                                        style="width: 200px; margin-top: 20px;">Agregar dispositivo</button>
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 200px; margin-top: 20px;">Escanear</button>
-                                </form>
-                            </div>
-                        </div>
+                {% endfor %}
+                <button id="add-form" type="button" class="btn btn-primary"
+                    style="width: 200px; margin-top: 20px;">Agregar dispositivo</button>
+                <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button>
+            </form>
+            <!--form action="#" method="POST"
+                class="u-clearfix u-form-custom-backend u-form-horizontal u-form-spacing-10 u-inner-form"
+                source="custom" name="form" style="padding: 10px;" redirect="true" id="form-containerr">
+                {% csrf_token %}
+                {{miform.management_form}}
+                {% for form in miform %}
+                <div class="dispositivos-form" style="width: 100%;margin: 0 auto;">
+                    <div class="u-form-group u-form-name">
+                        {{form.ip}}
                     </div>
+                    <div class="u-form-group">
+                        {{form.usuario}}
+                    </div>
+                    <div class="u-form-group u-form-group-3">
+                        {{form.clave}}
+                    </div>
+                    <div class="u-form-group u-form-group-4">
+                        {{form.puerto}}
+                    </div>
+                    <div class="u-form-group u-form-select u-form-group-5">
+                        {{form.protocolo}}
+                    </div>
+                    <div class="u-align-right u-form-group u-form-submit">
+                        <button id="add-form" type="button">Agregar dispositivo</button>
+                    </div>
+                    <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
+                    <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor,
+                        corrija los errores y vuelva a intentarlo. </div>
+                    <input type="hidden" value="" name="recaptchaResponse">
                 </div>
-            </div>
+                {% endfor %}-->
+                <!--div class="u-align-right u-form-group u-form-submit">
+                        <a href="#" class="u-btn u-btn-submit u-button-style">Enviar</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                    <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
+                    <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor,
+                        corrija
+                        los errores y vuelva a intentarlo. </div-->
+
+                <!--input type="hidden" value="" name="recaptchaResponse">
+                <button id="add-form" type="button" class="btn btn-primary"
+                    style="width: 200px; margin-top: 20px;">Agregar dispositivo</button>
+                <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button-->
+            <!--/form-->
         </div>
     </div>
-</div>
+</section>
 
 <script>
     let birdForm = document.querySelectorAll(".dispositivos-form")

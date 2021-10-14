@@ -1,0 +1,76 @@
+{% extends "LanGuardianApp/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Escanear dispositivos</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Dispositivos</h5>
+                                <hr>
+                                <div class="row">
+                                </div>
+
+                                <form id="form-containerr" method="POST">
+                                    {% csrf_token %}
+                                    {{miform.management_form}}
+                                    {% for form in miform %}
+                                    <div class="dispositivos-form">
+                                        {{form.as_table}}
+                                    </div>
+                                    {% endfor %}
+                                    <button id="add-form" type="button" class="btn btn-primary"
+                                        style="width: 200px; margin-top: 20px;">Agregar dispositivo</button>
+                                    <button type="submit" class="btn btn-primary"
+                                        style="width: 200px; margin-top: 20px;">Escanear</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let birdForm = document.querySelectorAll(".dispositivos-form")
+    let container = document.querySelector("#form-containerr")
+    let addButton = document.querySelector("#add-form")
+    let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+    let formNum = birdForm.length - 1 //Get the number of the last form on the page with zero-based indexing
+    addButton.addEventListener('click', addForm)
+
+    function addForm(e) {
+        e.preventDefault()
+
+        let newForm = birdForm[0].cloneNode(true) //Clone the bird form
+        let formRegex = RegExp(`form-(\\d){1}-`, 'g') //Regex to find all instances of the form number
+
+        formNum++ //Increment the form number
+        newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`) //Update the new form to have the correct form number
+        container.insertBefore(newForm, addButton) //Insert the new form at the end of the list of forms
+
+        totalForms.setAttribute('value', `${formNum + 1}`) //Increment the number of total forms in the form management
+    }
+</script>
+{% endblock %}

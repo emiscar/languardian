@@ -1,0 +1,425 @@
+{% extends "LanGuardianApp/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Resultados del análisis</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- PILLS DISPOSITIVOS -->
+                        <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-dispo-tab-0" data-bs-toggle="pill"
+                                    data-bs-target="#pills-dispo-0" type="button" role="tab"
+                                    aria-controls="pills-dispo-0" aria-selected="true">
+                                    Dispositivo 0
+                                </button>
+                            </li>
+                            {% for lcont in cont_demas %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-dispo-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-dispo" type="button" role="tab" aria-controls="pills-dispo"
+                                    aria-selected="false">
+                                    Dispositivo {{forloop.counter}}
+                                </button>
+                            </li>
+                            {% endfor %}
+                            <div>
+                                <a href="{% url 'Reporte' %}" target="_blank" class="btn btn-sm btn-success">Generate
+                                    Pdf</a>
+                            </div>
+                        </ul>
+                        <!-- CONTENIDO CADA PILL -->
+                        <div class="tab-content" id="pills-tabContent2" style="overflow-y: scroll;height: 71vh;">
+                            <div class="tab-pane fade show active" id="pills-dispo-0" role="tabpanel"
+                                aria-labelledby="pills-dispo-tab-0">
+                                <div class="card" style="float: left; width: 45%;">
+                                    <div class="card-body">
+                                        <h6><b>Configuración analizada</b><br><br></h6>
+                                        <div class="card-body" style="overflow-y: scroll;height: 80vh;">
+                                            <p class="mb-3">{{cont_uno|linebreaks}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="float: right; width: 50%;">
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-home" type="button" role="tab"
+                                                aria-controls="pills-home" aria-selected="true">
+                                                <b>Recomendaciones</b>
+                                                <span class="badge bg-primary">
+                                                    {{reco_uno|length}}
+                                                </span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-profile" type="button" role="tab"
+                                                aria-controls="pills-profile" aria-selected="false">
+                                                <b>Compliance NIST</b>
+                                                <span class="badge bg-danger">
+                                                    {{nist_uno|length}}
+                                                </span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-contact" type="button" role="tab"
+                                                aria-controls="pills-contact" aria-selected="false">
+                                                <b>Buenas prácticas</b>
+                                                <span class="badge bg-success">
+                                                    {{buep_uno|length}}
+                                                </span>
+                                            </button>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content" id="pills-tabContent"
+                                        style="overflow-y: scroll;height: 71vh;">
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                            aria-labelledby="pills-home-tab">
+                                            {% for ru in reco_uno %}
+                                            <div class="card">
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Descripción:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{ru.DESCRIPCION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Razón:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{ru.RECOMENDACIÓN}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Impacto:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{ru.IMPACTO}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Remediación:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{ru.REMEDIACION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Comando:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{ru.COM_REM}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        NIST:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{ru.NIST}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                            aria-labelledby="pills-profile-tab">
+                                            {% for nu in nist_uno %}
+                                            <div class="card">
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Descripción:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{nu.DESCRIPCION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Razón:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{nu.RECOMENDACIÓN}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Impacto:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{nu.IMPACTO}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Remediación:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{nu.REMEDIACION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Comando:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{nu.COM_REM}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        NIST:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{nu.NIST}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                            aria-labelledby="pills-contact-tab">
+                                            {% for bu in buep_uno %}
+                                            <div class="card">
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Descripción:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{bu.DESCRIPCION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Razón:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{bu.RECOMENDACIÓN}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Impacto:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{bu.IMPACTO}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Remediación:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{bu.REMEDIACION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Comando:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{bu.COM_REM}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        NIST:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{bu.NIST}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for econt in cont_demas %}
+                            <div class="tab-pane fade show" id="pills-dispo" role="tabpanel"
+                                aria-labelledby="pills-dispo-tab">
+                                <div class="card" style="float: left; width: 45%;">
+                                    <div class="card-body">
+                                        <h6>Configuración analizada<br><br></h6>
+                                        <div class="card-body" style="overflow-y: scroll;height: 80vh;">
+                                            <p class="mb-3">{{econt|linebreaks}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="float: right; width: 50%;">
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-home" type="button" role="tab"
+                                                aria-controls="pills-home" aria-selected="true">
+                                                Recomendaciones
+                                                <span class="badge bg-primary">
+                                                    {{forloop.counter}}
+                                                </span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-profile" type="button" role="tab"
+                                                aria-controls="pills-profile" aria-selected="false">
+                                                Compliance NIST
+                                                <span class="badge bg-danger">
+                                                    {{forloop.counter}}
+                                                </span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-contact" type="button" role="tab"
+                                                aria-controls="pills-contact" aria-selected="false">
+                                                Buenas prácticas
+                                                <span class="badge bg-success">
+                                                    {{forloop.counter}}
+                                                </span>
+                                            </button>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content" id="pills-tabContent"
+                                        style="overflow-y: scroll;height: 71vh;">
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                            aria-labelledby="pills-home-tab">
+                                            {% for rd in reco_demas %}
+                                            <div class="card">
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Descripción:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">
+                                                            {{rd.DESCRIPCION}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Razón:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{rd.RECOMENDACIÓN}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Impacto:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{rd.IMPACTO}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Remediación:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{rd.REMEDIACION}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        Comando:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{rd.COM_REM}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="margin:10px">
+                                                    <div style="width: 15%; float: left; font-size: smaller;">
+                                                        NIST:
+                                                    </div>
+                                                    <div style="width: 85%; float: right;">
+                                                        <p class="mb-3" style="font-size: smaller;">{{rd.NIST}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                            aria-labelledby="pills-profile-tab">
+                                            Contenido 2
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                            aria-labelledby="pills-contact-tab">
+                                            Contenido 3
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //    let dispoBar = document.querySelector("#pills-dispo-tab");
+    //    let dispoNum = dispoBar.length-1;
+    //    for (var i=0; i<dispoNum ;i++){ 
+    //        dispoBar[i].id.replace("pills-dispo-tab", `pepe-${i}-`);
+    //    }
+    //    document.getElementById("pills-dispo-tab");
+
+    var elms = document.querySelectorAll("[id='pills-dispo-tab']");
+    for (var i = 0; i < elms.length; i++) {
+
+        elms[i].id = `pills-dispo-tab-${i + 1}`;
+        elms[i].dataset.bsTarget = `#pills-dispo-${i + 1}`;
+        elms[i].setAttribute('aria-controls', `#pills-dispo-${i + 1}`);
+        //console.log(elms[i].getAttributeNames());
+        //console.log(elms[i]["aria-controls"]);
+    }
+    var conte = document.querySelectorAll("[id='pills-dispo']");
+    for (var i = 0; i < conte.length; i++) {
+        //console.log(conte[i]);
+        conte[i].id = `pills-dispo-${i + 1}`;
+        conte[i].setAttribute('aria-labelledby', `pills-dispo-tab-${i + 1}`);
+        //console.log(conte[i].getAttributeNames());
+
+    }
+    //<button class="nav-link" id="pills-dispo-tab" data-bs-toggle="pill" data-bs-target="#pills-dispo" type="button" role="tab" aria-controls="pills-other2" aria-selected="false">
+</script>
+{% endblock %}

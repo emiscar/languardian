@@ -1,0 +1,35 @@
+{% extends "LanGuardianApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Heading -->
+<!--section class="page-section clearfix">
+  <div class="container">
+    <div class="intro">
+    </div>
+  </div>
+</section-->
+<section class="page-section clearfix" style="text-align: center; margin: 20px;">
+  <!--p><img class="" src="{% static 'LanGuardianApp/img/L13.png' %}" alt="" style="width: 60%;"></p-->
+  <img class="" src="{% static 'LanGuardianApp/img/principal.jpg' %}" alt="" style="width: 500px;">
+</section>
+<!-- Message -->
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cta-inner text-center rounded">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Protección y compliance con NIST</span>
+            <span class="section-heading-lower"></span>
+          </h2>
+          <p class="mb-0">Configure sus dispositivos en base al estándar NIST y evite brechas de ciberseguridad</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

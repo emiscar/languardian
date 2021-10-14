@@ -14,6 +14,8 @@ body {
   font-weight: 400;
   background: #f4f7fa;
   position: relative;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 *:focus {
@@ -31,7 +33,7 @@ a:hover {
 
 h1,
 h2,
-h3,
+/*h3,*/
 h4,
 h5,
 h6 {
@@ -47,9 +49,9 @@ h2 {
   font-size: 44px;
 }
 
-h3 {
+/*h3 {
   font-size: 26px;
-}
+}*/
 
 h4 {
   font-size: 20px;
@@ -10578,3 +10580,4 @@ div.code-toolbar > .toolbar span:hover {
   font-size: 3rem;
   font-weight: 100;
 }
+

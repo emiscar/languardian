@@ -1,92 +1,98 @@
 <html>
 
 <head>
-
+  <meta charset="utf-8">
+  <title>Lan Guardian</title>
   {% load static %}
 
   <!-- Bootstrap -->
   <link href="{% static 'LanGuardianApp/vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
-  <!-- Fonts -->
-
+  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+  <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
 
+  <!-- Estilos -->
+  <link rel="stylesheet" href="{% static 'LanGuardianApp/css/nicepage.css' %}" media="screen">
 
-  <!-- Styles -->
-  <link href="{% static 'LanGuardianApp/css/gestion.css' %}" rel="stylesheet">
+  <!-- Scripts -->
+  <script class="u-script" type="text/javascript" src="{% static 'LanGuardianApp/js/jquery.js' %}" defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'LanGuardianApp/js/nicepage.js' %}" defer=""></script>
+  <script src="{% static 'LanGuardianApp/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'LanGuardianApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
 </head>
 
-<body>
-  <section class="page-section clearfix" style="text-align: center; ">
-    <div class="container">
-      <div class="intro">
-        <p><img class="" src="{% static 'LanGuardianApp/img/L13.png' %}" alt="" style="width: 40%; "></p>
-      </div>
+<body class="u-body">
+  <header class="u-clearfix u-header u-sticky u-sticky-d409 u-white u-header" id="sec-929c">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h1 class="u-custom-font u-font-lobster u-text u-text-default u-text-palette-1-base u-text-1">Lan Guardian</h1>
+      <a class="u-image u-logo u-image-1" data-image-width="121" data-image-height="134">
+        <img src="{% static 'LanGuardianApp/img/escudo.png' %}" class="u-logo-image u-logo-image-1">
+      </a>
+      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse"
+          style="font-size: 1rem; letter-spacing: 0px; text-transform: uppercase; font-weight: 500;">
+          <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-color u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-text-shadow u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+            href="#">
+            <svg>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+            </svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs>
+                <symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;">
+                  <rect y="1" width="16" height="2"></rect>
+                  <rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </symbol>
+              </defs>
+            </svg>
+          </a>
+        </div>
+        <div class="u-custom-menu u-nav-container">
+          <ul class="u-nav u-spacing-2 u-unstyled u-nav-1">
+            <li class="u-nav-item"><a
+                class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-hover-white"
+                href="/" style="padding: 10px 20px;">Home</a>
+            </li>
+            <li class="u-nav-item"><a
+                class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-hover-white"
+                href="/analisis/" style="padding: 10px 20px;">Analizar dispositivos</a>
+            </li>
+            <li class="u-nav-item"><a
+                class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-hover-white"
+                href="/categorias/" style="padding: 10px 20px;">Categorías NIST</a>
+            </li>
+          </ul>
+        </div>
+        <div class="u-custom-menu u-nav-container-collapse">
+          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+            <div class="u-inner-container-layout u-sidenav-overflow">
+              <div class="u-menu-close"></div>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/"
+                    style="padding: 10px 20px;">Home</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/analisis/"
+                    style="padding: 10px 20px;">Analizar dispositivos</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#"
+                    style="padding: 10px 20px;">Categorías NIST</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+        </div>
+      </nav>
     </div>
-  </section>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-      <!-- Toggle button -->
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarCenteredExample"
-        aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
+  </header>
+  {% block content %}
 
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
-        <!-- Left links -->
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/analisis/">Analizar dispositivos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Categorías NIST</a>
-          </li>
-        </ul>
-        <!-- Left links -->
-      </div>
-      <!-- Collapsible wrapper -->
-    </div>
-    <!-- Container wrapper -->
-  </nav>
-  <!--nav class="pcoded-navbar">
-    <div class="navbar-wrapper">
-      <div class="navbar-brand header-logo">
-        <a href="/" class="b-brand">
-          <span class="b-title"><b>LAN GUARDIAN</b></span>
-        </a>
-        <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-      </div>
-      <div class="navbar-content scroll-div">
-        <ul class="nav pcoded-inner-navbar">
-          <li class="nav-item pcoded-menu-caption">
-            <label>Análisis</label>
-          </li>
-          <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
-            class="nav-item {% if 'index' in segment %} active {% endif %}">
-            <a href="/analisis/" class="nav-link "><span class="pcoded-micon"><i
-                  class="feather icon-home"></i></span><span class="pcoded-mtext">Escanear dispositivos</span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav-->
-  <!-- Contenido -->
-  <!--div class="pcoded-main-container"-->
-  <div>
-    <div class="pcoded-wrapper">
-      {% block content %}
+  {% endblock %}
 
-      {% endblock %}
-    </div>
-  </div>
-  <!-- Footer -->
-  <footer class="footer text-faded text-center py-5">
+  <!--footer class="footer text-faded text-center py-5">
     <div class="container">
       <p class="m-0">
         <a href="#" class="link">
@@ -115,13 +121,8 @@
       </p>
       <p class="m-0 mbt1">&copy; LANGUARDIAN 2021</p>
     </div>
-  </footer>
-
-  <!-- Bootstrap -->
-  <script src="{% static 'LanGuardianApp/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'LanGuardianApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  </footer-->
 
 </body>
-
 
 </html>
