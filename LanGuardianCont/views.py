@@ -34,10 +34,12 @@ class DispositivosView(TemplateView):
     def get(self, *args, **kwargs):
 
         # Elimino los archivos de configuración y pdf al volver a la página de análisis
-        #test = os.listdir()
-        #for item in test:
-        #    if item.endswith(".txt") || item.endswith(".pdf"):
-        #        os.remove(item)
+        test = os.listdir()
+        for item in test:
+            if item.endswith(".txt"):
+                os.remove(item)
+            if item.endswith(".pdf"):
+                os.remove(item)
 
         # Creo la instancia del formulario
         formset = DispositivoFormSet(queryset=Dispositivo.objects.none())
@@ -58,12 +60,12 @@ class DispositivosView(TemplateView):
                 lclave = cd.get('clave')
                 lproto = cd.get('protocolo')
                 #DESMARCANDO ESTE IF/ELSE Y HABILITANDO LA LINEA 59 PUENTEO EL ESCANEO DE DISPOSITIVOS
-                #if lproto == '1':
-                    #res = con_telnet(lip,lpuerto,lusuario,lclave,i)
-                #else:
-                    #res = con_ssh(lip,lpuerto,lusuario,lclave,i)
+                if lproto == '1':
+                    res = con_telnet(lip,lpuerto,lusuario,lclave,i)
+                else:
+                    res = con_ssh(lip,lpuerto,lusuario,lclave,i)
                 i=i+1
-            res = True
+            #res = True
 
             # VALIDO SI HUBO PROBLEMAS DE CONEXION
             if res == True:
