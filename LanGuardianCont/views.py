@@ -92,9 +92,9 @@ def con_ssh(ip, puerto, usuario, clave, id):
     logging.info('connection attempt {}'.format(0))
     c = Connection(host=usuario + "@" + ip, connect_kwargs={"password":clave}, port=puerto)
     try:
-        c.run('cat pepe.txt')
+        c.run('show run')
         f = open("config"+str(id)+".txt", "w", encoding='utf-8')
-        f.write(str(c.run('cat pepe.txt')))
+        f.write(str(c.run('show run')))
         f.close()
         return True
     except Exception as ex:
@@ -112,7 +112,7 @@ def con_telnet(ip, puerto, usuario, clave, id):
             tn.read_until(b"Password: ")
             tn.write(clave.encode('ascii') + b"\n")
             f = open("temp.txt", "w", encoding='utf-8')
-            tn.write(b"cat pepe.txt\n")
+            tn.write(b"show run\n")
             tn.write(b"exit\n")            
             f.write(str(tn.read_all().decode('ascii')))
             f.close()
