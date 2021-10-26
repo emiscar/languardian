@@ -1,52 +1,50 @@
 from django import forms
-from django.forms import modelformset_factory
-from .models import Dispositivo
+from django.forms import formset_factory
 
-class DispositivoForm(forms.ModelForm):
-    opciones=[('1', 'Telnet'),('2', 'SSH')]
-    ip=forms.CharField(label="Dirección IP", required=True, widget=forms.TextInput(
+
+class DispositivoForm(forms.Form):
+    opciones = [('1', 'SSH'), ('2', 'Telnet')]
+    ip = forms.GenericIPAddressField(label="Dirección IP", required=True, widget=forms.TextInput(
         attrs={
-            'placeholder':'Ingrese IP del dispositivo',
-            'style':'width: 200px; font-size: smaller; color: black;',
-            #'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white',
-        }
-    ))
-    usuario=forms.CharField(label="Usuario", required=True, widget=forms.TextInput(
+            'style': 'width: 120px; font-size: smaller; color: black; border-radius: 10px; height: 30px;',
+        }),
+        error_messages={
+        'required': "Requerido",
+        'invalid':"Formato incorrecto"
+    })
+    usuario = forms.CharField(label="Usuario", required=True, widget=forms.TextInput(
         attrs={
-            'placeholder':'Ingrese usuario',
-            'style':'width: 200px; font-size: smaller;color: black;',
-            #'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white',
-        }
-    ))
+            'style': 'width: 120px; font-size: smaller;color: black; border-radius: 10px; height: 30px;',
+            'min': "3",
+        }),
+        error_messages={
+        'required': "Requerido"
+    })
     clave = forms.CharField(label="Clave", required=True, widget=forms.PasswordInput(
         attrs={
-            'placeholder':'Ingrese contraseña',
-            'style':'width: 200px; font-size: smaller;color: black;',
-            #'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white',
-        }
-    ))
-    protocolo = forms.ChoiceField(label="Protocolo", required=True, widget=forms.Select(attrs={'style':'color: black;'}), choices=opciones)#(
-        #attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white'})
-    puerto=forms.CharField(label="Puerto", required=True, widget=forms.NumberInput(
+            'style': 'width: 120px; font-size: smaller;color: black; border-radius: 10px; height: 30px;',
+            'min': "1",
+        }),
+        error_messages={
+        'required': "Requerido"
+    })
+    protocolo = forms.ChoiceField(label="Protocolo", required=True, choices=opciones, widget=forms.Select(
         attrs={
-            'placeholder':'Ingrese puerto SSH/Telnet',
-            'style':'width: 200px; font-size: smaller;color: black;',
-            #'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white',
-        }
-    ))
-    
-    
+            'style': 'width: 100px; font-size: smaller; color: black; border-radius: 10px; height: 30px;',
+        }),
+        error_messages={
+        'required': "Requerido"
+    })
+    puerto = forms.CharField(label="Puerto", required=True, widget=forms.NumberInput(
+        attrs={
+            'style': 'width: 80px; font-size: smaller;color: black; border-radius: 10px; height: 30px;',
+            'min': "1",
+            'max': "65536",
+        }),
+        error_messages={
+        'required': "Requerido"
+    })
 
-    class Meta:
-        model = Dispositivo
-        fields = (
-            'ip',
-            'puerto',
-            'usuario',
-            'clave',
-            'protocolo',
-        )
-
-DispositivoFormSet = modelformset_factory(
-    Dispositivo, DispositivoForm, extra=1, max_num=5
+DispositivoFormSet = formset_factory(
+    DispositivoForm, extra=1, max_num=5
 )

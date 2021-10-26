@@ -1,94 +1,70 @@
 {% extends "LanGuardianApp/base.html" %}
 {% load static %}
 {% block content %}
-<!--script class="u-script" type="text/javascript" src="{% static 'LanGuardianApp/js/formsmgmt.js' %}" defer=""></script-->
+
 <link href="{% static 'LanGuardianApp/css/analisis.css' %}" rel="stylesheet" media="screen">
-<!--link href="{% static 'LanGuardianApp/css/gestion.css' %}" rel="stylesheet"-->
+{% for message in messages %}
+<div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
 <section class="u-clearfix u-palette-1-base u-section-1" id="sec-89a6">
     <div class="u-clearfix u-sheet u-sheet-1">
         <h4 class="u-custom-font u-text u-text-font u-text-1">Dispositivos</h4>
         <div class="u-form u-form-1">
-            <form id="form-containerr" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
-                {{miform.management_form}}
-                {% for form in miform %}
-                <div class="dispositivos-form">
-                    {{form.as_table}}
-                </div>
-                {% endfor %}
-                <button id="add-form" type="button" class="btn btn-primary"
-                    style="width: 200px; margin-top: 20px;">Agregar dispositivo</button>
-                <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button>
-            </form>
-            <!--form action="#" method="POST"
-                class="u-clearfix u-form-custom-backend u-form-horizontal u-form-spacing-10 u-inner-form"
-                source="custom" name="form" style="padding: 10px;" redirect="true" id="form-containerr">
-                {% csrf_token %}
-                {{miform.management_form}}
-                {% for form in miform %}
-                <div class="dispositivos-form" style="width: 100%;margin: 0 auto;">
-                    <div class="u-form-group u-form-name">
-                        {{form.ip}}
-                    </div>
-                    <div class="u-form-group">
-                        {{form.usuario}}
-                    </div>
-                    <div class="u-form-group u-form-group-3">
-                        {{form.clave}}
-                    </div>
-                    <div class="u-form-group u-form-group-4">
-                        {{form.puerto}}
-                    </div>
-                    <div class="u-form-group u-form-select u-form-group-5">
-                        {{form.protocolo}}
-                    </div>
-                    <div class="u-align-right u-form-group u-form-submit">
-                        <button id="add-form" type="button">Agregar dispositivo</button>
-                    </div>
-                    <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
-                    <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor,
-                        corrija los errores y vuelva a intentarlo. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
-                </div>
-                {% endfor %}-->
-                <!--div class="u-align-right u-form-group u-form-submit">
-                        <a href="#" class="u-btn u-btn-submit u-button-style">Enviar</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                    <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
-                    <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor,
-                        corrija
-                        los errores y vuelva a intentarlo. </div-->
+                {{ form.as_p }}
 
-                <!--input type="hidden" value="" name="recaptchaResponse">
-                <button id="add-form" type="button" class="btn btn-primary"
-                    style="width: 200px; margin-top: 20px;">Agregar dispositivo</button>
-                <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 20px;">Escanear</button-->
-            <!--/form-->
+                <table class="table">
+                    {{ miform.management_form }}
+
+                    {% for form in miform.forms %}
+                    {% if forloop.first %}
+                    <thead>
+                        <tr>
+                            {% for field in form.visible_fields %}
+                            <th style="color: white; ">{{ field.label|capfirst }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    {% endif %}
+                    <tr class="formset_row">
+                        {% for field in form.visible_fields %}
+                        <td>
+                            {# Include the hidden fields in the form #}
+                            {% if forloop.first %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            {% endif %}
+                            {{ field.errors.as_ul }}
+                            {{ field }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br><br>
+                <button type="submit"
+                    class="u-align-center u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-palette-4-base u-btn-3">Escanear</button>
+            </form>
+
         </div>
     </div>
 </section>
 
-<script>
-    let birdForm = document.querySelectorAll(".dispositivos-form")
-    let container = document.querySelector("#form-containerr")
-    let addButton = document.querySelector("#add-form")
-    let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
-
-    let formNum = birdForm.length - 1 //Get the number of the last form on the page with zero-based indexing
-    addButton.addEventListener('click', addForm)
-
-    function addForm(e) {
-        e.preventDefault()
-
-        let newForm = birdForm[0].cloneNode(true) //Clone the bird form
-        let formRegex = RegExp(`form-(\\d){1}-`, 'g') //Regex to find all instances of the form number
-
-        formNum++ //Increment the form number
-        newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`) //Update the new form to have the correct form number
-        container.insertBefore(newForm, addButton) //Insert the new form at the end of the list of forms
-
-        totalForms.setAttribute('value', `${formNum + 1}`) //Increment the number of total forms in the form management
-    }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.js"></script>
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: 'Agregar dispositivo',
+        deleteText: 'Quitar',
+    });
 </script>
 {% endblock %}

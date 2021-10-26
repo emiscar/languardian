@@ -1,423 +1,466 @@
 {% extends "LanGuardianApp/base.html" %}
 {% load static %}
+{% load index %}
 {% block content %}
 <link href="{% static 'LanGuardianApp/css/configuracion.css' %}" rel="stylesheet" media="screen">
-<link href="{% static 'LanGuardianApp/css/gestion.css' %}" rel="stylesheet">
 
 <section class="u-clearfix u-palette-1-base u-section-1" id="sec-2fbe">
-    <h3 class="u-custom-font u-text u-text-default u-text-font u-text-1">Resultados</h3>
-    <div class="row u-expanded-width">
-        <div class="col-sm-12">
-            <!-- PILLS DISPOSITIVOS -->
-            <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-dispo-tab-0" data-bs-toggle="pill"
-                        data-bs-target="#pills-dispo-0" type="button" role="tab" aria-controls="pills-dispo-0"
-                        aria-selected="true">
-                        Dispositivo 0
-                    </button>
-                </li>
-                {% for lcont in cont_demas %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-dispo-tab" data-bs-toggle="pill" data-bs-target="#pills-dispo"
-                        type="button" role="tab" aria-controls="pills-dispo" aria-selected="false">
-                        Dispositivo {{forloop.counter}}
-                    </button>
-                </li>
-                {% endfor %}
-                <!--div>
-                        <a href="{% url 'Reporte2' %}" target="_blank" class="btn btn-sm btn-success">Generate
-                            Pdf</a>
-                    </div-->
-            </ul>
-            <!-- CONTENIDO CADA PILL -->
-            <div class="tab-content" id="pills-tabContent2" style="overflow-y: scroll;height: 71vh;">
-                <div class="tab-pane fade show active" id="pills-dispo-0" role="tabpanel"
-                    aria-labelledby="pills-dispo-tab-0">
-                    <div class="card" style="float: left; width: 45%;">
-                        <div class="card-body">
-                            <h6><b>Configuración analizada</b><br><br></h6>
-                            <div class="card-body" style="overflow-y: scroll;height: 80vh;color:black;">
-                                <p class="mb-3">{{cont_uno|linebreaks}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" style="float: right; width: 50%;">
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                    aria-selected="true">
-                                    <b>Recomendaciones</b>
-                                    <span class="badge bg-primary">
-                                        {{reco_uno|length}}
-                                    </span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-profile" type="button" role="tab"
-                                    aria-controls="pills-profile" aria-selected="false">
-                                    <b>Compliance NIST</b>
-                                    <span class="badge bg-danger">
-                                        {{nist_uno|length}}
-                                    </span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
-                                    aria-controls="pills-contact" aria-selected="false">
-                                    <b>Buenas prácticas</b>
-                                    <span class="badge bg-success">
-                                        {{buep_uno|length}}
-                                    </span>
-                                </button>
-                            </li>
-                        </ul>
+    <h3 class="u-align-center u-custom-font u-text u-text-default u-text-font u-text-1">RESULTADOS DEL ANÁLISIS</h3>
+    <div class="u-expanded-width u-tabs u-tabs-1">
+        <ul class="u-black u-tab-list u-unstyled u-tab-list-1" role="tablist">
+            <li class="u-tab-item" role="presentation">
+                <a class="active u-active-white u-button-style u-palette-2-base u-tab-link" id="pills-dispo-tab-0"
+                    href="#pills-dispo-0" role="tab" aria-controls="pills-dispo-0" aria-selected="true"><b>Dispositivo
+                        0</b></a>
+            </li>
+            {% for lcont in cont_demas %}
+            <li class="u-tab-item" role="presentation">
+                <a class="u-active-white u-button-style u-palette-2-base u-tab-link" id="pills-dispo-tab"
+                    href="#pills-dispo" role="tab" aria-controls="pills-dispo" aria-selected="false"><b>Dispositivo
+                        {{forloop.counter}}</b></a>
+            </li>
+            {% endfor %}
+        </ul>
 
-                        <div class="tab-content" id="pills-tabContent" style="overflow-y: scroll;height: 71vh;">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                aria-labelledby="pills-home-tab">
-                                {% for ru in reco_uno %}
-                                <div class="card">
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Descripción:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{ru.DESCRIPCION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Razón:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{ru.RECOMENDACIÓN}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Impacto:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{ru.IMPACTO}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Remediación:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{ru.REMEDIACION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Comando:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{ru.COM_REM}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            NIST:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{ru.NIST}}</p>
+        <div class="u-tab-content">
+            <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="pills-dispo-0"
+                role="tabpanel" aria-labelledby="pills-dispo-tab-0">
+                <div class="u-container-layout u-container-layout-1">
+                    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                        <div class="u-layout">
+                            <div class="u-layout-row">
+                                <div class="u-container-style u-layout-cell u-size-24 u-white u-layout-cell-1">
+                                    <div class="u-container-layout u-container-layout-2" style="font-size: small;">
+                                        <!--div>
+                                            <a href="{% url 'Reporte2' %}" id="test" target="_blank" class="btn btn-sm btn-success">PDF</a>
+                                        </div-->
+                                        <h6><b style="color: black;">Configuración analizada</b><br><br></h6>
+                                        <div style="overflow-y: scroll;height: 60vh;">
+                                            <p class="u-text u-text-default u-text-2">{{cont_uno|linebreaks}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %}
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                aria-labelledby="pills-profile-tab">
-                                {% for nu in nist_uno %}
-                                <div class="card">
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Descripción:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{nu.DESCRIPCION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Razón:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{nu.RECOMENDACIÓN}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Impacto:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{nu.IMPACTO}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Remediación:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{nu.REMEDIACION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Comando:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{nu.COM_REM}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            NIST:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{nu.NIST}}</p>
+                                <div class="u-container-style u-layout-cell u-size-36 u-layout-cell-2">
+                                    <div class="u-container-layout u-container-layout-3">
+                                        <div class="u-tab-links-align-justify u-tabs u-tabs-2">
+                                            <ul class="u-tab-list u-unstyled" role="tablist">
+                                                <li class="u-tab-item" role="presentation">
+                                                    <a class="active u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-3"
+                                                        id="pills-nist-tab-0" href="#pills-nist-0" role="tab"
+                                                        aria-controls="pills-nist-0" aria-selected="true"><b>NIST</b>
+                                                        <span class="badge bg-primary">
+                                                            {{nist_uno|length}}
+                                                        </span></a>
+                                                </li>
+                                                <li class="u-tab-item" role="presentation">
+                                                    <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-4"
+                                                        id="pills-reco-tab-0" href="#pills-reco-0" role="tab"
+                                                        aria-controls="pills-reco-0"
+                                                        aria-selected="false"><b>Recomendaciones</b> <span
+                                                            class="badge bg-primary">
+                                                            {{reco_uno|length}}</span></a>
+                                                </li>
+                                                <li class="u-tab-item" role="presentation">
+                                                    <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-5"
+                                                        id="pills-buep-tab-0" href="#pills-buep-0" role="tab"
+                                                        aria-controls="pills-buep-0" aria-selected="false"><b>Buenas
+                                                            prácticas</b> <span class="badge bg-primary">
+                                                            {{buep_uno|length}}</span></a>
+                                                </li>
+                                            </ul>
+                                            <div class="u-tab-content" style="overflow-y: scroll;">
+                                                <div class="u-align-left u-container-style u-tab-active u-tab-pane u-white u-tab-pane-2"
+                                                    id="pills-nist-0" role="tabpanel"
+                                                    aria-labelledby="pills-nist-tab-0">
+                                                    <div class="u-container-layout u-container-layout-4"
+                                                        style="height: 65vh;">
+                                                        <div class="u-list u-list-1">
+                                                            <div class="u-repeater u-repeater-1">
+                                                                {% for nu in nist_uno %}
+                                                                <div class="u-container-style u-list-item u-repeater-item"
+                                                                    style="border-style: dashed; background-color: lightgray;">
+                                                                    <div
+                                                                        class="u-container-layout u-similar-container u-container-layout-5">
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Descripción:</u></b>
+                                                                            {{nu.DESCRIPCION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Razón:</u></b> {{nu.RECOMENDACIÓN}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Impacto:</u></b> {{nu.IMPACTO}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Remediación:</u></b>
+                                                                            {{nu.REMEDIACION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Comando:</u></b> {{nu.COM_REM}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>NIST:</u></b> {{nu.NIST}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="u-container-style u-tab-pane u-white u-tab-pane-3"
+                                                    id="pills-reco-0" role="tabpanel"
+                                                    aria-labelledby="pills-reco-tab-0">
+                                                    <div class="u-container-layout u-container-layout-4"
+                                                        style="height: 71vh;">
+                                                        <div class="u-list u-list-1">
+                                                            <div class="u-repeater u-repeater-1">
+                                                                {% for ru in reco_uno %}
+                                                                <div class="u-container-style u-list-item u-repeater-item"
+                                                                    style="border-style: dashed;background-color: lightgray;">
+                                                                    <div
+                                                                        class="u-container-layout u-similar-container u-container-layout-5">
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Descripción:</u></b>
+                                                                            {{ru.DESCRIPCION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Razón:</u></b> {{ru.RECOMENDACIÓN}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Impacto:</u></b> {{ru.IMPACTO}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Remediación:</u></b>
+                                                                            {{ru.REMEDIACION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Comando:</u></b> {{ru.COM_REM}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>NIST:</u></b> {{ru.NIST}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="u-container-style u-tab-pane u-white u-tab-pane-4"
+                                                    id="pills-buep-0" role="tabpanel"
+                                                    aria-labelledby="pills-buep-tab-0">
+                                                    <div class="u-container-layout u-container-layout-4"
+                                                        style="height: 71vh;">
+                                                        <div class="u-list u-list-1">
+                                                            <div class="u-repeater u-repeater-1">
+                                                                {% for bu in buep_uno %}
+                                                                <div class="u-container-style u-list-item u-repeater-item"
+                                                                    style="border-style: dashed;background-color: lightgray;">
+                                                                    <div
+                                                                        class="u-container-layout u-similar-container u-container-layout-5">
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Descripción:</u></b>
+                                                                            {{bu.DESCRIPCION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Razón:</u></b> {{bu.RECOMENDACIÓN}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Impacto:</u></b> {{bu.IMPACTO}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Remediación:</u></b>
+                                                                            {{bu.REMEDIACION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Comando:</u></b> {{bu.COM_REM}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>NIST:</u></b> {{bu.NIST}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %}
-                            </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                aria-labelledby="pills-contact-tab">
-                                {% for bu in buep_uno %}
-                                <div class="card">
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Descripción:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{bu.DESCRIPCION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Razón:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{bu.RECOMENDACIÓN}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Impacto:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{bu.IMPACTO}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Remediación:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{bu.REMEDIACION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Comando:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{bu.COM_REM}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            NIST:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{bu.NIST}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
-                {% for econt in cont_demas %}
-                <div class="tab-pane fade show" id="pills-dispo" role="tabpanel" aria-labelledby="pills-dispo-tab">
-                    <div class="card" style="float: left; width: 45%;">
-                        <div class="card-body">
-                            <h6>Configuración analizada<br><br></h6>
-                            <div class="card-body" style="overflow-y: scroll;height: 80vh;color:black;">
-                                <p class="mb-3">{{econt|linebreaks}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" style="float: right; width: 50%;">
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                    aria-selected="true">
-                                    Recomendaciones
-                                    <span class="badge bg-primary">
-                                        6
-                                    </span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-profile" type="button" role="tab"
-                                    aria-controls="pills-profile" aria-selected="false">
-                                    Compliance NIST
-                                    <span class="badge bg-danger">
-                                        41
-                                    </span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
-                                    aria-controls="pills-contact" aria-selected="false">
-                                    Buenas prácticas
-                                    <span class="badge bg-success">
-                                        8
-                                    </span>
-                                </button>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content" id="pills-tabContent" style="overflow-y: scroll;height: 71vh;">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                aria-labelledby="pills-home-tab">
-                                {% for rd in reco_demas %}
-                                <div class="card">
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Descripción:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">
-                                                {{rd.DESCRIPCION}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Razón:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{rd.RECOMENDACIÓN}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Impacto:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{rd.IMPACTO}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Remediación:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{rd.REMEDIACION}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;color:black;">
-                                            Comando:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{rd.COM_REM}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin:10px">
-                                        <div style="width: 15%; float: left; font-size: smaller;">
-                                            NIST:
-                                        </div>
-                                        <div style="width: 85%; float: right;">
-                                            <p class="mb-3" style="font-size: smaller;color:black;">{{rd.NIST}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                aria-labelledby="pills-profile-tab">
-                                Contenido 2
-                            </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                aria-labelledby="pills-contact-tab">
-                                Contenido 3
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
             </div>
+            {% for econt in cont_demas %}
+            {% with forloop.counter0 as outer_counter %}
+            <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="pills-dispo" role="tabpanel"
+                aria-labelledby="pills-dispo-tab">
+                <div class="u-container-layout u-container-layout-1">
+                    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                        <div class="u-layout">
+                            <div class="u-layout-row">
+                                <div class="u-container-style u-layout-cell u-size-24 u-white u-layout-cell-1">
+                                    <div class="u-container-layout u-container-layout-2" style="font-size: small;">
+                                        <h6><b style="color: black;">Configuración analizada</b><br><br></h6>
+                                        <div style="overflow-y: scroll;height: 60vh;">
+                                            <p class="u-text u-text-default u-text-2">{{econt|linebreaks}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="u-container-style u-layout-cell u-size-36 u-layout-cell-2">
+                                    <div class="u-container-layout u-container-layout-3">
+                                        <div class="u-tab-links-align-justify u-tabs u-tabs-2">
+                                            <ul class="u-tab-list u-unstyled" role="tablist">
+                                                <li class="u-tab-item" role="presentation">
+                                                    <a class="active u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-3"
+                                                        id="pills-nist-tab" href="#pills-nist" role="tab"
+                                                        aria-controls="pills-nist" aria-selected="true"><b>NIST</b>
+                                                        <span class="badge bg-primary">
+                                                            {{nist_demas|index:outer_counter|length}}</span></a>
+                                                </li>
+                                                <li class="u-tab-item" role="presentation">
+                                                    <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-4"
+                                                        id="pills-reco-tab" href="#pills-reco" role="tab"
+                                                        aria-controls="pills-reco"
+                                                        aria-selected="false"><b>Recomendaciones</b>
+                                                        <span class="badge bg-primary">
+                                                            {{reco_demas|index:outer_counter|length}}</span></a>
+                                                </li>
+                                                <li class="u-tab-item" role="presentation">
+                                                    <a class="u-active-white u-button-style u-palette-2-base u-tab-link u-tab-link-5"
+                                                        id="pills-buep-tab" href="#pills-buep" role="tab"
+                                                        aria-controls="pills-buep" aria-selected="false"><b>Buenas
+                                                            prácticas</b> <span class="badge bg-primary">
+                                                            {{buep_demas|index:outer_counter|length}}</span></a>
+                                                </li>
+                                            </ul>
+                                            <div class="u-tab-content" style="overflow-y: scroll;">
+                                                <div class="u-align-left u-container-style u-tab-active u-tab-pane u-white u-tab-pane-2"
+                                                    id="pills-nist" role="tabpanel" aria-labelledby="pills-nist-tab">
+                                                    <div class="u-container-layout u-container-layout-4"
+                                                        style="height: 65vh;">
+                                                        <div class="u-list u-list-1">
+                                                            <div class="u-repeater u-repeater-1">
+                                                                {% for nd in nist_demas|index:outer_counter %}
+                                                                <div class="u-container-style u-list-item u-repeater-item"
+                                                                    style="border-style: dashed;background-color: lightgray;">
+                                                                    <div
+                                                                        class="u-container-layout u-similar-container u-container-layout-5">
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Descripción:</u></b>
+                                                                            {{nd.DESCRIPCION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Razón:</u></b> {{nd.RECOMENDACIÓN}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Impacto:</u></b> {{nd.IMPACTO}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Remediación:</u></b>
+                                                                            {{nd.REMEDIACION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Comando:</u></b> {{nd.COM_REM}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>NIST:</u></b> {{nd.NIST}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="u-container-style u-tab-pane u-white u-tab-pane-3"
+                                                    id="pills-reco" role="tabpanel" aria-labelledby="pills-reco-tab">
+                                                    <div class="u-container-layout u-container-layout-4"
+                                                        style="height: 71vh;">
+                                                        <div class="u-list u-list-1">
+                                                            <div class="u-repeater u-repeater-1">
+                                                                {% for rd in reco_demas|index:outer_counter %}
+                                                                <div class="u-container-style u-list-item u-repeater-item"
+                                                                    style="border-style: dashed;background-color: lightgray;">
+                                                                    <div
+                                                                        class="u-container-layout u-similar-container u-container-layout-5">
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Descripción:</u></b>
+                                                                            {{rd.DESCRIPCION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Razón:</u></b> {{rd.RECOMENDACIÓN}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Impacto:</u></b> {{rd.IMPACTO}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Remediación:</u></b>
+                                                                            {{rd.REMEDIACION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Comando:</u></b> {{rd.COM_REM}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>NIST:</u></b> {{rd.NIST}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="u-container-style u-tab-pane u-white u-tab-pane-4"
+                                                    id="pills-buep" role="tabpanel" aria-labelledby="pills-buep-tab">
+                                                    <div class="u-container-layout u-container-layout-4"
+                                                        style="height: 71vh;">
+                                                        <div class="u-list u-list-1">
+                                                            <div class="u-repeater u-repeater-1">
+                                                                {% for bd in buep_demas|index:outer_counter %}
+                                                                <div class="u-container-style u-list-item u-repeater-item"
+                                                                    style="border-style: dashed;background-color: lightgray;">
+                                                                    <div
+                                                                        class="u-container-layout u-similar-container u-container-layout-5">
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Descripción:</u></b>
+                                                                            {{bd.DESCRIPCION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Razón:</u></b> {{bd.RECOMENDACIÓN}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Impacto:</u></b> {{bd.IMPACTO}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Remediación:</u></b>
+                                                                            {{bd.REMEDIACION}}
+                                                                        </p><br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>Comando:</u></b> {{bd.COM_REM}}
+                                                                        </p>
+                                                                        <br>
+                                                                        <p class="u-text u-text-default u-text-3"
+                                                                            style="text-align: justify; font-size: smaller;">
+                                                                            <b><u>NIST:</u></b> {{bd.NIST}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+            {% endfor %}
         </div>
-    </div>
     </div>
 </section>
 
 <script>
-    //    let dispoBar = document.querySelector("#pills-dispo-tab");
-    //    let dispoNum = dispoBar.length-1;
-    //    for (var i=0; i<dispoNum ;i++){ 
-    //        dispoBar[i].id.replace("pills-dispo-tab", `pepe-${i}-`);
-    //    }
-    //    document.getElementById("pills-dispo-tab");
-
     var elms = document.querySelectorAll("[id='pills-dispo-tab']");
     for (var i = 0; i < elms.length; i++) {
-
         elms[i].id = `pills-dispo-tab-${i + 1}`;
-        elms[i].dataset.bsTarget = `#pills-dispo-${i + 1}`;
+        elms[i].href = `#pills-dispo-${i + 1}`;
         elms[i].setAttribute('aria-controls', `#pills-dispo-${i + 1}`);
-        //console.log(elms[i].getAttributeNames());
-        //console.log(elms[i]["aria-controls"]);
     }
     var conte = document.querySelectorAll("[id='pills-dispo']");
     for (var i = 0; i < conte.length; i++) {
-        //console.log(conte[i]);
         conte[i].id = `pills-dispo-${i + 1}`;
         conte[i].setAttribute('aria-labelledby', `pills-dispo-tab-${i + 1}`);
-        //console.log(conte[i].getAttributeNames());
-
     }
-    //<button class="nav-link" id="pills-dispo-tab" data-bs-toggle="pill" data-bs-target="#pills-dispo" type="button" role="tab" aria-controls="pills-other2" aria-selected="false">
-
-    var elms2 = document.querySelectorAll("[id='pills-dispo-tab']");
-    for (var i = 0; i < elms2.length; i++) {
-
-        elms2[i].id = `pills-dispo-tab-${i + 1}`;
-        elms2[i].dataset.bsTarget = `#pills-dispo-${i + 1}`;
-        elms2[i].setAttribute('aria-controls', `#pills-dispo-${i + 1}`);
-        //console.log(elms[i].getAttributeNames());
-        //console.log(elms[i]["aria-controls"]);
+    // RENOMBRO LAS ETIQUETAS DE RECOMENDACIONES
+    var elmsn = document.querySelectorAll("[id='pills-nist-tab']");
+    for (var i = 0; i < elmsn.length; i++) {
+        elmsn[i].id = `pills-nist-tab-${i + 1}`;
+        elmsn[i].href = `#pills-nist-${i + 1}`;
+        elmsn[i].setAttribute('aria-controls', `#pills-nist-${i + 1}`);
     }
-    var conte2 = document.querySelectorAll("[id='pills-dispo']");
-    for (var i = 0; i < conte2.length; i++) {
-        //console.log(conte[i]);
-        conte2[i].id = `pills-dispo-${i + 1}`;
-        conte2[i].setAttribute('aria-labelledby', `pills-dispo-tab-${i + 1}`);
-        //console.log(conte[i].getAttributeNames());
-
+    var conten = document.querySelectorAll("[id='pills-nist']");
+    for (var i = 0; i < conten.length; i++) {
+        conten[i].id = `pills-nist-${i + 1}`;
+        conten[i].setAttribute('aria-labelledby', `pills-nist-tab-${i + 1}`);
+    }
+    var elmsr = document.querySelectorAll("[id='pills-reco-tab']");
+    for (var i = 0; i < elmsr.length; i++) {
+        elmsr[i].id = `pills-reco-tab-${i + 1}`;
+        elmsr[i].href = `#pills-reco-${i + 1}`;
+        elmsr[i].setAttribute('aria-controls', `#pills-reco-${i + 1}`);
+    }
+    var conter = document.querySelectorAll("[id='pills-reco']");
+    for (var i = 0; i < conter.length; i++) {
+        conter[i].id = `pills-reco-${i + 1}`;
+        conter[i].setAttribute('aria-labelledby', `pills-reco-tab-${i + 1}`);
+    }
+    var elmsb = document.querySelectorAll("[id='pills-buep-tab']");
+    for (var i = 0; i < elmsb.length; i++) {
+        elmsb[i].id = `pills-buep-tab-${i + 1}`;
+        elmsb[i].href = `#pills-buep-${i + 1}`;
+        elmsb[i].setAttribute('aria-controls', `#pills-buep-${i + 1}`);
+    }
+    var conteb = document.querySelectorAll("[id='pills-buep']");
+    for (var i = 0; i < conteb.length; i++) {
+        conteb[i].id = `pills-buep-${i + 1}`;
+        conteb[i].setAttribute('aria-labelledby', `pills-buep-tab-${i + 1}`);
     }
 </script>
 {% endblock %}
