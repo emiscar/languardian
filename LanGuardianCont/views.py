@@ -36,12 +36,12 @@ class DispositivosView(TemplateView):
 
     def get(self, *args, **kwargs):
         # Elimino los archivos de configuración y pdf al volver a la página de análisis
-        #test = os.listdir()
-        # for item in test:
-        #    if item.endswith(".txt"):
-        #        os.remove(item)
-        #    if item.endswith(".pdf"):
-        #        os.remove(item)
+        test = os.listdir()
+        for item in test:
+            #    if item.endswith(".txt"):
+            #        os.remove(item)
+            if item.endswith(".pdf"):
+                os.remove(item)
         # Creo la instancia del formulario
         formset = DispositivoFormSet(data=self.request.GET or None)
         return self.render_to_response({'miform': formset})
@@ -163,7 +163,8 @@ def configuracion(request):
             ## UTILIZO CONFPARSE ##
             parse = CiscoConfParse("config"+str(i)+".txt")
             ## LEO TEMPLATE NIST ##
-            df = pd.read_excel("NIST.xlsx", sheet_name="NIST", header=0, na_values="NaN")
+            df = pd.read_excel("NIST.xlsx", sheet_name="NIST",
+                               header=0, na_values="NaN")
             ## MATCHEO CADA FILA DEL NIST CONTRA LA CONFIG ##
             for index, row in df.iterrows():
                 comando = df.iloc[index, 0]
@@ -187,7 +188,8 @@ def configuracion(request):
             ## UTILIZO CONFPARSE ##
             parse = CiscoConfParse("config"+str(i)+".txt")
             ## LEO TEMPLATE NIST ##
-            df = pd.read_excel("NIST.xlsx", sheet_name="NIST", header=0, na_values="NaN")
+            df = pd.read_excel("NIST.xlsx", sheet_name="NIST",
+                               header=0, na_values="NaN")
             ## MATCHEO CADA FILA DEL NIST CONTRA LA CONFIG ##
             for index, row in df.iterrows():
                 comando = df.iloc[index, 0]
@@ -324,6 +326,7 @@ def generar_pdf(recos, i):
     write_to_file = open('config'+str(i)+'.pdf', "w+b")
     result = pisa.CreatePDF(html, dest=write_to_file)
     write_to_file.close()
+
 
 def report_pdf(request):
     # template=get_template('LanGuardianCont/report.html')
